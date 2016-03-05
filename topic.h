@@ -2,6 +2,7 @@
 #define TOPIC_H_
 
 #include <vector>
+#include <gsl/gsl_sf.h>
 
 using namespace std;
 
@@ -17,6 +18,14 @@ class Topic {
 public:
 	Topic(int corpus_word_no, AllTopics* all_topics_);
 
+	int getCorpusWordNo() const { return corpus_word_no_; }
+	void setCorpusWordNO(int corpus_word_no) { corpus_word_no_ = corpus_word_no; }
+
+	int getTableCount() const { return table_count_; }
+	void setTableCount(int table_count) { table_count = table_count_; }
+	void incTableCount(int val) { table_count_ += val; }
+
+	void updateWordCounts(int word_id, int update);
 
 private:
 	// Corpus word number - vocabulary size.
@@ -29,10 +38,7 @@ private:
 	vecotr<int> word_counts_;
 
 	// Precomputed ln(gamma(w + eta)) for each word.
-	vector<double> lgam_word_eta_;
-
-	// All topics.
-	AllTopics* all_topics_; 
+	vector<double> lgam_word_eta_; 
 
 };
 

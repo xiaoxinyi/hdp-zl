@@ -1,3 +1,6 @@
+#include <math.h>
+
+
 #include "utils.h"
 #include "topic.h"
 
@@ -5,15 +8,25 @@
 // Topic
 // =======================================================================
 
-Topic::Topic(int corpus_word_no, AllTopics* all_topics)
+Topic::Topic(int corpus_word_no)
 		: corpus_word_no_(corpus_word_no),
 		  table_count_(0),
-		  word_counts_(corpus_word_no, 0),
-		  all_topics_(all_topics) {
-	double eta = all_topics_.getEta();
+		  word_counts_(corpus_word_no, 0) {
+	AllTopics all_topics = AllTopics::GetInstance();
+	double eta = all_topics.getEta();
 	double lgam_w_eta = gsl_sf_lngamma(eta);
+
+	word_counts_ = vector(corpus_word_no, 0);
+	lgam_word_eta_ = vector(corpus_word_no, lgam_w_eta);
+
 }
 
+void Topic::updateWordCounts(int word_id, int update) {
+		word_counts_[word_id] += update;
+
+		double eta = AllAuthor::GetInstance().getEta();
+		lgam_word_eta_[word_id] = gsl_sf_lngamma(word_counts_[word_id] + eta);
+}
 
 // =======================================================================
 // AllTopics

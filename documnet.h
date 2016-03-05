@@ -33,6 +33,17 @@ private:
 	Table* table_;
 };
 
+
+// This class provides the functionality for updating 
+// the table statistics correspond to the word.
+class WordUtils {
+public:
+
+// updating the table statistics correspond to the word.
+static void UpdateTableFromWord(Word* word, int update);
+};
+
+
 // This class has number of words in a table.
 // Topic assignment of the table.
 class Table {
@@ -42,6 +53,7 @@ public:
 
 	int getWordCount() const { return word_count_; }
 	void setWordCount(const int& word_count) { word_count_ = word_count; }
+	void incWordCount(int val) { word_count_ += val; }
 
 	Topic* getMuableTopic() { return topic; }
 	void setTopic(Topic* topic) { topic_ = topic; }
@@ -54,6 +66,18 @@ private:
 	Topic* topic_;
 };
 
+// The class provides functionality for updating topic's
+// statistics correspond to table.
+class TableUtils {
+public:
+
+// Updating topic's statistics correspond to table.
+// and the word id.
+static UpdateTopicFromTable(Table* table,
+														int word_id,
+														int update);
+};
+
 // The Document contains an id, a number of words.
 // A number of table pointers.
 class Document {
@@ -63,7 +87,7 @@ public:
 
 	int getWords() { return words_.size(); }
 	int getTables() { return tables_.size(); }
-	
+
 	void addWord(const Word& word) { words_.push_back(word); }
 	Word* getMutableWord(int i) { reutrn &(words_[i]); }
 	void setWords(const vector<Word>& words) {
@@ -90,6 +114,8 @@ private:
 	// Table pointers.
 	vector<Table*> tables_;  
 };
+
+
 
 
 }  // namespace hdp
