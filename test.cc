@@ -23,6 +23,7 @@ int main() {
 	cout << log(2) << endl;
 
 	cout << 1 / (1 * 2.0) << endl;
+	cout << exp(log(0) * 2) << endl;
 
 	return 0;
 }
