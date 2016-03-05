@@ -19,13 +19,19 @@ Topic::Topic(int corpus_word_no)
 	word_counts_ = vector(corpus_word_no, 0);
 	lgam_word_eta_ = vector(corpus_word_no, lgam_w_eta);
 
+	double log_w_pr = log(1.0 / corpus_word_no);
+	log_word_pr_ = vector(corpus_word_no, log_w_pr);
+
 }
 
 void Topic::updateWordCounts(int word_id, int update) {
-		word_counts_[word_id] += update;
+	word_counts_[word_id] += update;
 
-		double eta = AllAuthor::GetInstance().getEta();
-		lgam_word_eta_[word_id] = gsl_sf_lngamma(word_counts_[word_id] + eta);
+	double eta = AllAuthor::GetInstance().getEta();
+	int word_count = word_counts_[word_id]; 
+		
+	lgam_word_eta_[word_id] = gsl_sf_lngamma(word_count + eta);
+	log_word_pr_[word_id] = log(word_count/ (word_count + eta * corpus_word_no_ ));
 }
 
 // =======================================================================

@@ -58,9 +58,16 @@ public:
 	Topic* getMuableTopic() { return topic; }
 	void setTopic(Topic* topic) { topic_ = topic; }
 
+	int getWordId(int i) const { return word_ids_[i]; }
+	void addWordId(int word_id) { word_ids_.push_back(word_id); }
+	void removeWodId(int word_id);
+
 private:
 	// Number of words.
 	int word_count_;
+
+	// Word ids assigned to the table.
+	vector<int> word_ids_; 
 
 	// A pointer to topoic the table is assigned to.
 	Topic* topic_;
@@ -73,9 +80,13 @@ public:
 
 // Updating topic's statistics correspond to table.
 // and the word id.
-static UpdateTopicFromTable(Table* table,
+static void UpdateTopicFromTable(Table* table,
 														int word_id,
 														int update);
+
+// Remove or add table to a topic.
+static void UpdateTopicFromTable(Table* table
+																			int update)
 };
 
 // The Document contains an id, a number of words.
@@ -115,7 +126,29 @@ private:
 	vector<Table*> tables_;  
 };
 
+// The class provide functionality for 
+// sampling table for each word.
+class DocumentUtils {
+public:
+	// Sample table for each word.
+	// Dirichlet process parameter,
+	// alpha - second level,
+	// gamma - first level.
+	static void SampleTables(Document* document,
+											     bool remove,
+											     double alpha,
+											     double gamma);
 
+	// Sample table for one word.
+	// Dirichlet process parameter,
+	// alpha - second level,
+	// gamma - first level.
+	static void SampleTableForWord(Document* document,
+																 Word* word,
+																 bool remove,
+																 double alpha,
+											    			 double gamma);
+};
 
 
 }  // namespace hdp

@@ -24,7 +24,7 @@
 
 using namespace std;
 
-namespace hlda {
+namespace hdp {
 
 // Remove an element from a vector.
 // T should have operator== function.
@@ -79,6 +79,6 @@ class Utils {
   static gsl_rng* RANDNUMGEN;
 };
 
-}  // namespace hlda
+}  // namespace hdp
 
 #endif  // UTILS_H_

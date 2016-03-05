@@ -22,7 +22,7 @@
 
 #include "utils.h"
 
-namespace hlda {
+namespace hdp {
 
 // =======================================================================
 // Utils

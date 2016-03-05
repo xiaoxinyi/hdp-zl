@@ -27,6 +27,9 @@ public:
 
 	void updateWordCounts(int word_id, int update);
 
+	double getLgamWordEta(int word_id) const { return lgam_word_eta_[word_id]; }
+	double getLogWordPr(int word_id) const { return log_word_pr_[word_id]; }
+
 private:
 	// Corpus word number - vocabulary size.
 	int corpus_word_no_;
@@ -40,6 +43,9 @@ private:
 	// Precomputed ln(gamma(w + eta)) for each word.
 	vector<double> lgam_word_eta_; 
 
+	// Log word posterior probability in the topic.
+	vector<double> log_word_pr_;
+
 };
 
 // AllTopics store all the topics globally.
@@ -51,6 +57,8 @@ public:
 
 	// Sigleton instance of AllTopics.
 	static AllTopics& GetInstance();
+
+	int getTopics() const { return topic_ptrs_.size(); }
 
 	void addNewTopic(int corpus_word_no);
 	void removeTopic(Topic* topic);
