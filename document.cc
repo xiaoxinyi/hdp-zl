@@ -95,12 +95,9 @@ void TableUtils::UpdateTopic(Table* table,
 void TableUtils::UpdateTopicFromTable(Table* table,
 																			vector<int>& word_ids,
 																			vector<int>& counts,
-																			bool remove) {
+																			int update) {
 	
 	int size = word_ids.size();
-
-	int update = 1;
-	if (remove) update = -1;
 
 	for (int i = 0; i < size; i++) {
 		int word_id = word_ids[i];
@@ -110,6 +107,50 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 	table->GetaMutableTopic()->incTableCount(update);
 }
 
+void TableUtils::SampleTopicForTable(Table* table, 
+																		 double gamma) {
+	AllTopics& all_topics = AllTopics::GetInstance();
+	int topics = all_topics.getTopics();
+
+	vector<int> word_ids;
+	vector<int> counts;
+	TableUtils::GetWordsAndCounts(table, word_ids, counts);
+	
+	assert(topics >= 1);
+	int corpus_word_no = all_topics.getMutableTopic[0]->getCorpusWordNo();
+	all_topics.addNewTopic(corpus_word_no);
+
+	vector<double> log_pr(topics + 1, 0.0);
+	for (int i = 0; i < topics; i++) {
+		Topic* topic = all_topics.getMutableTopic(i);
+		if (table->getMutableTopic() != topic) {
+			log_pr[i] = TopicTableUtils::LogGammaRatio(table, topic, 
+																								 word_ids, counts) +
+									log(topic->getTableCount());
+		} else {
+			log_pr[i] = TopicTableUtils::LogGammaRatio(table, topic
+																								 word_ids, counts) +
+									log(topic->getTableCount() - 1);
+		}
+		Topic* new_topic = all_topics.getMutableTopic(topics);
+		log[topics] = log(gamma) + TopicTableUtils::LogGammaRatio(table, new_topic
+																															word_ids, counts);
+								
+	}
+
+	int sample_topic = Utils::SampleFromLogPr(log_pr);
+	Topic* old_topic = table->getMutableTopic();
+	Topic* new_topic = all_topics.getMutableTopic(sample_topic);
+
+	if (old_topic != new_topic) {
+		table->setTopic(new_topic);
+		TableUtils::UpdateTopicFromTable(table, word_ids, counts, 1);
+	}
+
+	if (sample_topic == topics) {
+		all_topics.removeLastTopic();
+	}
+}
 
 // =======================================================================
 // Document

@@ -2,6 +2,7 @@
 #define DOCUMENT_H_
 
 #include <vector>
+#include <unordered_map>
 
 #include "topic.h"
 
@@ -96,7 +97,10 @@ static void UpdateTopicFromTable(Table* table,
 static void UpdateTopicFromTable(Table* table,
 																 vector<int>& word_ids,
 																 vector<int>& counts,
-													 			 bool remove);
+													 			 int update);
+
+// Sample a topic for a table.
+static void SampleTopicForTable(Table* table);
 };
 
 // The Document contains an id, a number of words.

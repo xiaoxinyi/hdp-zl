@@ -64,6 +64,7 @@ public:
 
 	void addNewTopic(int corpus_word_no);
 	void removeTopic(Topic* topic);
+	void removeLastTopic();
 	
 	Topic* getMutableTopic(int i) {
 		return topic_ptrs_[i];
@@ -89,8 +90,14 @@ private:
 class TopicTableUtils {
 public:
 	// Compute log gamma ratio for table given a topic.
+	// table - given table.
+	// topic - possible to be sampled topic.
+	// word_ids - distinct word ids in table.
+	// counts - corresponding counts.
 	static double LogGammaRatio(Table* table,
-											 				Topic* topic);
+											 				Topic* topic,
+											 				vecotr<int>& word_ids,
+											 				vecotr<int>& counts);
 };
 
 }  // namespace hdp

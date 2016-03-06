@@ -38,6 +38,22 @@ void removeFromVec(vector<T>& v, T target) {
     }
 }
 
+template<typename T>
+void removeFromVec(vector<T*>& v, T* target) {
+    auto found = find(v.begin(), v.end(), target);
+    if (found == v.end()) {
+
+    } else {
+        
+        if (*found != NULL) {
+            delete *found;
+            *found = NULL;
+        }
+        
+        v.erase(found);
+    }
+}
+
 // This class provides functionality for summing values,
 // for reading data from files and also provides
 // an interface to gsl specific methods.

@@ -69,12 +69,21 @@ void AllTopics::removeTopic(Topic* topic) {
 	removeFromVec(topic_ptrs_, topic);
 } 
 
+void AllTopics::removeLastTopic() {
+	int size = topic_ptrs_.size();
+	delete topic_ptrs_[size];
+	topic_ptrs_[size] = NULL;
+	topic_ptrs_.resize(size - 1);
+}
+
 // =======================================================================
 // TopicTableUtils
 // =======================================================================
 
 double TopicTableUtils::LogGammaRatio(Table* table,
-											 								Topic* topic) {
+											 								Topic* topic,
+											 								vecotr<int>& word_ids,
+											 								vecotr<int>& counts) {
 	double log_gamma_ratio = 0.0;
 	Topic* old_topic = table->getMutableTopic();
 
@@ -82,9 +91,7 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 	int topic_words = topic->getTopicWords();
 	int table_words = table->getWordCount();
 	int corpus_word_no = topic->getCorpusWordNo();
-	vector<int> word_ids;
-	vector<int> counts;
-	TableUtils::GetWordsAndCounts(table, word_ids, counts);
+
 
 	
 	if (old_topic == topic) {
@@ -108,6 +115,6 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 												 topic->getLgamWordEta(word_id);  
 		}
 	}
-	
+
 	return log_gamma_ratio;
 }
