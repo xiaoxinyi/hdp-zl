@@ -25,13 +25,8 @@ void WordUtils::UpdateTableFromWord(Word* word,
 																	  int update) {
 	Table* table = word->getMutableTable();
 	table->incWordCount(update);
-	if (update == 1) {
-		table->addWordId(word->getId());
-	}
-
-	if (update == -1) {
-		table->removeWordId(word->getId());
-	}
+	table->updateMapWordCount(word->getId(), update);
+	
 
 	TableUtils::UpdateTopic(table, word->getId(), update);
 }
@@ -50,13 +45,45 @@ Table::Table(int word_count)
 	topic_ = NULL;
 }
 
-Table::removeWordId(int word_id) {
-	removeFromVec(word_ids_, word_id);
+int Table::getCountById(int word_id) {
+	auto it = map_word_count_.find(word_id);
+	if (it == word_id.end()) {
+		return 0;
+	} else {
+		return map_word_count_[word_id];
+	}
+}
+
+void updateMapWordCount(int word_id, int update) {
+	auto it = map_word_count_.find(word_id);
+	if (it == word_id.end()) {
+		map_word_count_[word_id] = update;
+	} else {
+		map_word_count_[word_id] += update;
+	}
+
+	assert(map_word_count_[word_id] >= 0);
+	return;
 }
 
 // =======================================================================
 // TableUtils
 // =======================================================================
+
+void TableUtils::GetWordsAndCounts(Table* table,
+																	 vector<int>& word_ids,
+																	 vector<int>& counts) {
+	unordered_map<int, int>& m = table->getMapWordCount();
+	int size = m.size();
+
+	word_ids.reserve(size);
+	counts.reserve(size);
+
+	for (auto p : m) {
+		word_ids.push(p.first);
+		counts.push(p.second);
+	}
+}
 
 void TableUtils::UpdateTopic(Table* table,
 														int word_id,
@@ -65,13 +92,19 @@ void TableUtils::UpdateTopic(Table* table,
 	topic->updateWordCounts(word_id, update);
 }
 
-void TableUtils::UpdateTopicFromTable(Table* table
-																			int update) {
-	int words = table->getWordCount();
+void TableUtils::UpdateTopicFromTable(Table* table,
+																			vector<int>& word_ids,
+																			vector<int>& counts,
+																			bool remove) {
+	
+	int size = word_ids.size();
 
-	for (int i = 0; i < words; i++) {
-		int word_id = table->getWordId(i);
-		UpdateTopic(table, word_id, update);
+	int update = 1;
+	if (remove) update = -1;
+
+	for (int i = 0; i < size; i++) {
+		int word_id = word_ids[i];
+		UpdateTopic(table, word_id, update * counts[word_id]);
 	}
 
 	table->GetaMutableTopic()->incTableCount(update);

@@ -26,10 +26,12 @@ public:
 	void incTableCount(int val) { table_count_ += val; }
 
 	void updateWordCounts(int word_id, int update);
+	int getWordCount(int word_id) const { return word_counts_[word_id]; }
 
 	double getLgamWordEta(int word_id) const { return lgam_word_eta_[word_id]; }
 	double getLogWordPr(int word_id) const { return log_word_pr_[word_id]; }
 
+	int getTopicWords() const;
 private:
 	// Corpus word number - vocabulary size.
 	int corpus_word_no_;
@@ -84,6 +86,12 @@ private:
 	AllTopics& operator=(const AllTopics& from);
 };
 
+class TopicTableUtils {
+public:
+	// Compute log gamma ratio for table given a topic.
+	static double LogGammaRatio(Table* table,
+											 				Topic* topic);
+};
 
 }  // namespace hdp
 #endif  // TOPIC_H_

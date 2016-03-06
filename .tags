@@ -1,0 +1,106 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.8	//
+AllTopics	topic.h	/^	AllTopics() { }$/;"	f	class:hdp::AllTopics
+AllTopics	topic.h	/^class AllTopics {$/;"	c	namespace:hdp
+COMPILER	Makefile	/^COMPILER = g++$/;"	m
+DOCUMENT_H_	documnet.h	/^#define DOCUMENT_H_$/;"	d
+Document	document.cc	/^Document::Document(int id) $/;"	f	class:hdp::Document
+Document	documnet.h	/^class Document {$/;"	c	namespace:hdp
+DocumentUtils	documnet.h	/^class DocumentUtils {$/;"	c	namespace:hdp
+FLAGS	Makefile	/^FLAGS = -g -Wall  -I\/usr\/local\/Cellar\/gsl\/1.16\/include$/;"	m
+GetInstance	topic.cc	/^AllTopics::AllTopics& GetInstance() {$/;"	f
+GetWordsAndCounts	document.cc	/^void TableUtils::GetWordsAndCounts(Table* table,$/;"	f	class:hdp::TableUtils
+InitRandomNumberGen	utils.cc	/^void Utils::InitRandomNumberGen(long rng_seed) {$/;"	f	class:hdp::Utils
+LIBS	Makefile	/^LIBS = -lgsl -lgslcblas -L\/usr\/local\/Cellar\/gsl\/1.16\/lib$/;"	m
+LogGammaRatio	topic.cc	/^double TopicTableUtils::LogGammaRatio(Table* table,$/;"	f	class:TopicTableUtils
+LogSum	utils.cc	/^double Utils::LogSum(double log_a, double log_b) {$/;"	f	class:hdp::Utils
+OBJS	Makefile	/^OBJS = utils.o topic.o tree.o document.o corpus.o gibbs.o hlda_main.o$/;"	m
+RANDNUMGEN	utils.cc	/^gsl_rng* Utils::RANDNUMGEN = NULL;$/;"	m	class:hdp::Utils	file:
+RANDNUMGEN	utils.h	/^  static gsl_rng* RANDNUMGEN;$/;"	m	class:hdp::Utils
+RandGauss	utils.cc	/^double Utils::RandGauss(double mean, double stdev) {$/;"	f	class:hdp::Utils
+RandNo	utils.cc	/^double Utils::RandNo() {$/;"	f	class:hdp::Utils
+SOURCE	Makefile	/^SOURCE = $(OBJS:.o=.cc)$/;"	m
+SampleFromLogPr	utils.cc	/^int Utils::SampleFromLogPr(const vector<double>& log_pr) {$/;"	f	class:hdp::Utils
+SampleTableForWord	document.cc	/^void DocumentUtils::SampleTableForWord(Document* document,$/;"	f	class:hdp::DocumentUtils
+SampleTables	document.cc	/^void DocumentUtils::SampleTables(Document* document,$/;"	f	class:hdp::DocumentUtils
+Shuffle	utils.cc	/^void Utils::Shuffle(gsl_permutation* permutation, int size) {$/;"	f	class:hdp::Utils
+Sum	utils.cc	/^double Utils::Sum(const vector<double>& v) {$/;"	f	class:hdp::Utils
+TOPIC_H_	topic.h	/^#define TOPIC_H_$/;"	d
+Table	document.cc	/^Table::Table()$/;"	f	class:hdp::Table
+Table	document.cc	/^Table::Table(int word_count)$/;"	f	class:hdp::Table
+Table	documnet.h	/^class Table {$/;"	c	namespace:hdp
+TableUtils	documnet.h	/^class TableUtils {$/;"	c	namespace:hdp
+Topic	topic.cc	/^Topic::Topic(int corpus_word_no)$/;"	f	class:Topic
+Topic	topic.h	/^class Topic {$/;"	c	namespace:hdp
+UTILS_H_	utils.h	/^#define UTILS_H_$/;"	d
+UpdateTableFromWord	document.cc	/^void WordUtils::UpdateTableFromWord(Word* word,$/;"	f	class:hdp::WordUtils
+UpdateTopic	document.cc	/^void TableUtils::UpdateTopic(Table* table,$/;"	f	class:hdp::TableUtils
+UpdateTopicFromTable	document.cc	/^void TableUtils::UpdateTopicFromTable(Table* table,$/;"	f	class:hdp::TableUtils
+Utils	utils.h	/^class Utils {$/;"	c	namespace:hdp
+Word	document.cc	/^Word::Word(int id) $/;"	f	class:hdp::Word
+Word	documnet.h	/^class Word {$/;"	c	namespace:hdp
+WordUtils	documnet.h	/^class WordUtils {$/;"	c	namespace:hdp
+addNewTable	documnet.h	/^	void addNewTable() {$/;"	f	class:hdp::Document
+addNewTopic	topic.cc	/^void AllTopics::addNewTopic(int corpus_word_no) {$/;"	f	class:AllTopics
+addWord	documnet.h	/^	void addWord(const Word& word) { words_.push_back(word); }$/;"	f	class:hdp::Document
+corpus_word_no_	topic.h	/^	int corpus_word_no_;$/;"	m	class:hdp::Topic
+eta_	topic.h	/^	double eta_; $/;"	m	class:hdp::AllTopics
+getCorpusWordNo	topic.h	/^	int getCorpusWordNo() const { return corpus_word_no_; }$/;"	f	class:hdp::Topic
+getCountById	document.cc	/^int Table::getCountById(int word_id) {$/;"	f	class:hdp::Table
+getEta	topic.h	/^	int getEta() const { return eta_; }$/;"	f	class:hdp::AllTopics
+getId	documnet.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Document
+getId	documnet.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Word
+getLgamWordEta	topic.h	/^	double getLgamWordEta(int word_id) const { return lgam_word_eta_[word_id]; }$/;"	f	class:hdp::Topic
+getLogWordPr	topic.h	/^	double getLogWordPr(int word_id) const { return log_word_pr_[word_id]; }$/;"	f	class:hdp::Topic
+getMapWordCount	documnet.h	/^	unordered_map<int, int>& getMapWordCount() const { return map_word_count_; }$/;"	f	class:hdp::Table
+getMuableTopic	documnet.h	/^	Topic* getMuableTopic() { return topic; }$/;"	f	class:hdp::Table
+getMutableTable	documnet.h	/^	Table* getMutableTable() { return table_; }$/;"	f	class:hdp::Word
+getMutableTable	documnet.h	/^	Table* getMutableTable(int i) { return tables_[i]; }$/;"	f	class:hdp::Document
+getMutableTopic	topic.h	/^	Topic* getMutableTopic(int i) {$/;"	f	class:hdp::AllTopics
+getMutableWord	documnet.h	/^	Word* getMutableWord(int i) { reutrn &(words_[i]); }$/;"	f	class:hdp::Document
+getTableCount	topic.h	/^	int getTableCount() const { return table_count_; }$/;"	f	class:hdp::Topic
+getTables	documnet.h	/^	int getTables() { return tables_.size(); }$/;"	f	class:hdp::Document
+getTopics	topic.h	/^	int getTopics() const { return topic_ptrs_.size(); }$/;"	f	class:hdp::AllTopics
+getWordCount	documnet.h	/^	int getWordCount() const { return word_count_; }$/;"	f	class:hdp::Table
+getWords	documnet.h	/^	int getWords() { return words_.size(); }$/;"	f	class:hdp::Document
+hdp	document.cc	/^namespace hdp {$/;"	n	file:
+hdp	documnet.h	/^namespace hdp {$/;"	n
+hdp	topic.h	/^namespace hdp {$/;"	n
+hdp	utils.cc	/^namespace hdp {$/;"	n	file:
+hdp	utils.h	/^namespace hdp {$/;"	n
+id_	documnet.h	/^	int id_;$/;"	m	class:hdp::Document
+id_	documnet.h	/^	int id_;$/;"	m	class:hdp::Word
+incTableCount	topic.h	/^	void incTableCount(int val) { table_count_ += val; }$/;"	f	class:hdp::Topic
+incWordCount	documnet.h	/^	void incWordCount(int val) { word_count_ += val; }$/;"	f	class:hdp::Table
+lgam_word_eta_	topic.h	/^	vector<double> lgam_word_eta_; $/;"	m	class:hdp::Topic
+log_word_pr_	topic.h	/^	vector<double> log_word_pr_;$/;"	m	class:hdp::Topic
+main	test.cc	/^int main() {$/;"	f
+map_word_count_	documnet.h	/^	unordered_map<int, int> map_word_count_;$/;"	m	class:hdp::Table
+removeFromVec	utils.h	/^void removeFromVec(vector<T>& v, T target) {$/;"	f	namespace:hdp
+removeTopic	topic.cc	/^void AllTopics::removeTopic(Topic* topic) {$/;"	f	class:AllTopics
+setCorpusWordNO	topic.h	/^	void setCorpusWordNO(int corpus_word_no) { corpus_word_no_ = corpus_word_no; }$/;"	f	class:hdp::Topic
+setEta	topic.h	/^	void setEta(const int& eta) { eta_ = eta; }$/;"	f	class:hdp::AllTopics
+setId	documnet.h	/^	void setId(const int id) { id_ = id; }$/;"	f	class:hdp::Document
+setId	documnet.h	/^	void setId(const int& id) { id_ = id; }$/;"	f	class:hdp::Word
+setTable	documnet.h	/^	void setTable(Table* table) { table_ = table; }$/;"	f	class:hdp::Word
+setTableCount	topic.h	/^	void setTableCount(int table_count) { table_count = table_count_; }$/;"	f	class:hdp::Topic
+setTopic	documnet.h	/^	void setTopic(Topic* topic) { topic_ = topic; }$/;"	f	class:hdp::Table
+setWordCount	documnet.h	/^	void setWordCount(const int& word_count) { word_count_ = word_count; }$/;"	f	class:hdp::Table
+setWords	documnet.h	/^	void setWords(const vector<Word>& words) {$/;"	f	class:hdp::Document
+table_	documnet.h	/^	Table* table_;$/;"	m	class:hdp::Word
+table_count_	topic.h	/^	int table_count_;$/;"	m	class:hdp::Topic
+tables_	documnet.h	/^	vector<Table*> tables_;  $/;"	m	class:hdp::Document
+topic_	documnet.h	/^	Topic* topic_;$/;"	m	class:hdp::Table
+topic_ptrs_	topic.h	/^	vector<Topic*> topic_ptrs_;$/;"	m	class:hdp::AllTopics
+updateMapWordCount	document.cc	/^void updateMapWordCount(int word_id, int update) {$/;"	f	namespace:hdp
+updateWordCounts	topic.cc	/^void Topic::updateWordCounts(int word_id, int update) {$/;"	f	class:Topic
+word_count_	documnet.h	/^	int word_count_;$/;"	m	class:hdp::Table
+word_counts_	topic.h	/^	vecotr<int> word_counts_;$/;"	m	class:hdp::Topic
+words_	documnet.h	/^	vector<Word> words_;$/;"	m	class:hdp::Document
+~AllTopics	topic.cc	/^AllTopics::~AllTopics() {$/;"	f	class:AllTopics
+~Document	document.cc	/^Document::~Document() {$/;"	f	class:hdp::Document
+~Word	document.cc	/^Word::~Word() {}$/;"	f	class:hdp::Word

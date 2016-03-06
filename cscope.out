@@ -1,0 +1,2428 @@
+cscope 15 $HOME/code/cplusplus/hdp-zl               0000011811
+	@corpus.cc
+
+	@corpus.h
+
+	@document.cc
+
+1 
+	~<m©h.h
+>
+
+2 
+	~<as£¹.h
+>
+
+4 
+	~"docum’t.h
+"
+
+5 
+	~"uts.h
+"
+
+7 
+Çme¥aû
+ 
+	ghdp
+ {
+
+13 
+	gWÜd
+::
+WÜd
+(
+id
+)
+
+14 : 
+id_
+(
+id
+) {
+
+18 
+WÜd
+::~Word() {}
+
+24 
+WÜdUts
+::
+Upd©eTabËFromWÜd
+(
+WÜd
+* 
+wÜd
+,
+
+25 
+upd©e
+) {
+
+26 
+TabË
+* 
+	gbË
+ = 
+wÜd
+->
+g‘MubËTabË
+();
+
+27 
+	gbË
+->
+šcWÜdCouÁ
+(
+upd©e
+);
+
+28 ià(
+	gupd©e
+ == 1) {
+
+29 
+bË
+->
+addWÜdId
+(
+wÜd
+->
+g‘Id
+());
+
+32 ià(
+	gupd©e
+ == -1) {
+
+33 
+bË
+->
+»moveWÜdId
+(
+wÜd
+->
+g‘Id
+());
+
+36 
+	gTabËUts
+::
+Upd©eTİic
+(
+bË
+, 
+wÜd
+->
+g‘Id
+(), 
+upd©e
+);
+
+43 
+	gTabË
+::
+TabË
+()
+
+44 : 
+wÜd_couÁ_
+(0) {
+
+45 
+tİic_
+ = 
+NULL
+;
+
+48 
+	gTabË
+::
+TabË
+(
+wÜd_couÁ
+)
+
+49 : 
+wÜd_couÁ_
+(
+wÜd_couÁ
+) {
+
+50 
+tİic_
+ = 
+NULL
+;
+
+53 
+	gTabË
+::
+g‘WÜdId
+(
+i
+) const {
+
+54 
+m­_wÜd_couÁ_
+.
+fšd
+(
+i
+)
+
+57 
+TabË
+::
+addWÜdId
+(
+wÜd_id
+) {
+
+61 
+TabË
+::
+»moveWÜdId
+(
+wÜd_id
+) {
+
+69 
+TabËUts
+::
+Upd©eTİic
+(
+TabË
+* 
+bË
+,
+
+70 
+wÜd_id
+,
+
+71 
+upd©e
+) {
+
+72 
+Tİic
+* 
+	gtİic
+ = 
+bË
+->
+g‘MubËTİic
+();
+
+73 
+	gtİic
+->
+upd©eWÜdCouÁs
+(
+wÜd_id
+, 
+upd©e
+);
+
+76 
+	gTabËUts
+::
+Upd©eTİicFromTabË
+(
+TabË
+* 
+bË
+
+
+77 
+upd©e
+) {
+
+78 
+wÜds
+ = 
+bË
+->
+g‘WÜdCouÁ
+();
+
+80 
+	gi
+ = 0; i < 
+	gwÜds
+; i++) {
+
+81 
+	gwÜd_id
+ = 
+bË
+->
+g‘WÜdId
+(
+i
+);
+
+82 
+Upd©eTİic
+(
+bË
+, 
+wÜd_id
+, 
+upd©e
+);
+
+85 
+	gbË
+->
+G‘aMubËTİic
+()->
+šcTabËCouÁ
+(
+upd©e
+);
+
+93 
+	gDocum’t
+::
+Docum’t
+(
+id
+)
+
+94 : 
+id_
+(
+id
+) {
+
+97 
+Docum’t
+::~Document() {
+
+98 
+size
+ = 
+g‘TabËs
+();
+
+99 
+	gi
+ = 0; i < 
+	gsize
+; i++) {
+
+100 ià(
+	gbËs_
+ !ğ
+NULL
+) {
+
+101 
+d–‘e
+ 
+bËs_
+[
+i
+];
+
+111 
+	gDocum’tUts
+::
+Sam¶eTabËs
+(
+Docum’t
+* 
+docum’t
+,
+
+112 
+boŞ
+ 
+»move
+,
+
+113 
+®pha
+,
+
+114 
+gamma
+) {
+
+118 
+	gDocum’tUts
+::
+Sam¶eTabËFÜWÜd
+(
+Docum’t
+* 
+docum’t
+,
+
+119 
+WÜd
+* 
+wÜd
+,
+
+120 
+boŞ
+ 
+»move
+,
+
+121 
+®pha
+,
+
+122 
+gamma
+) {
+
+123 ià(
+	g»move
+è
+	gWÜdUts
+::
+Upd©eTabËFromWÜd
+(
+wÜd
+, -1);
+
+125 
+	gbËs
+ = 
+docum’t
+->
+g‘TabËs
+();
+
+126 
+	gveùÜ
+<> 
+log_´
+(
+bËs
+ + 1, 
+log
+(0));
+
+128 
+AÎTİics
+ 
+	g®l_tİics
+ = AÎTİics.
+G‘In¡ªû
+();
+
+129 
+	gtİics
+ = 
+®l_tİics
+.
+g‘Tİics
+();
+
+130 
+as£¹
+(
+tİics
+ > 0);
+
+132 
+	gcÜpus_wÜd_no
+ = 
+®l_tİics
+.
+g‘MubËTİic
+(0).
+g‘CÜpusWÜdNo
+();
+
+133 
+	gwÜd_id
+ = 
+wÜd
+->
+g‘Id
+();
+
+137 
+	gveùÜ
+<> 
+log_´_tİic
+(
+tİics
+ + 1 , 0.0);
+
+140 
+	gveùÜ
+<> 
+f
+(
+tİics
++1, 
+log
+(0));
+
+141 
+	gf_Ãw
+ = 
+log
+(
+gamma
+ / 
+cÜpus_wÜd_no
+);
+
+143 
+	glog_´_tİic
+[
+tİics
+] = 
+f_Ãw
+;
+
+145 
+	gtÙ®_bËs
+ = 0;
+
+146 
+	gunÜd”ed_m­
+<
+	gTİic
+*, > 
+	gtİic_to_k
+;
+
+148 
+	gk
+ = 0; k < 
+	gtİics
+; 
+	gi
+++) {
+
+149 
+Tİic
+* 
+	gtİic
+ = 
+®l_tİics
+.
+g‘MubËTİic
+(
+k
+);
+
+150 
+	gtİic_to_k
+[
+tİic
+*] = 
+k
+;
+
+151 
+	gf
+[
+k
+] = 
+tİic
+->
+g‘LogWÜdPr
+(
+wÜd_id
+);
+
+152 
+	gbË_couÁ
+ = 
+tİic
+->
+g‘TabËCouÁ
+();
+
+153 
+	gtÙ®_bËs
+ +ğ
+bË_couÁ
+;
+
+154 
+	glog_´_tİic
+[
+k
+] = 
+f
+[k] + 
+log
+(
+bË_couÁ
+);
+
+155 
+	gf_Ãw
+ = 
+Uts
+::
+LogSum
+(
+f_Ãw
+,
+
+156 
+f
+[
+k
+] + 
+log
+(
+bË_couÁ
+)));
+
+158 
+	gf_Ãw
+ = 
+f_Ãw
+ - 
+log
+(
+tÙ®_bËs
+ + 
+gamma
+);
+
+159 
+	gf
+[
+tİics
+] = 
+f_Ãw
+;
+
+161 
+	gt
+ = 0; < 
+	gbËs
+;++) {
+
+162 
+TabË
+* 
+	gbË
+ = 
+docum’t
+->
+g‘MubËTabË
+(
+t
+);
+
+163 
+	gbË_wÜd_couÁ
+ = 
+bË
+.
+g‘WÜdCouÁ
+();
+
+164 
+	glog_wÜd_couÁ
+ = 
+log
+(
+bË_wÜd_couÁ
+);
+
+166 
+Tİic
+* 
+	gtİic
+ = 
+bË
+->
+g‘MubËTİic
+();
+
+167 
+	gk
+ = 
+tİic_to_k
+[
+tİic
+];
+
+169 
+	glog_´
+[
+t
+] = 
+log_wÜd_couÁ
+ + 
+f
+[
+k
+];
+
+172 
+	glog_´
+[
+bËs
+] = 
+log
+(
+®pha
+è+ 
+f
+[
+tİics
+];
+
+174 
+	g§m¶e_bË
+ = 
+Uts
+::
+Sam¶eFromLogPr
+(
+log_´
+);
+
+177 ià(
+	g§m¶e_bË
+ =ğ
+bËs
+) {
+
+179 
+docum’t
+->
+addNewTabË
+();
+
+180 
+TabË
+* 
+	gÃw_bË
+ = 
+docum’t
+->
+g‘MubËTabË
+(
+§m¶e_bË
+);
+
+181 
+	gwÜd
+->
+£tTabË
+(
+Ãw_bË
+);
+
+183 
+	g§m¶e_tİic
+ = 
+Uts
+::
+Sam¶eFromLogPr
+(
+log_´_tİic
+);
+
+184 ià(
+	g§m¶e_tİic
+ =ğ
+tİics
+) {
+
+186 
+®l_tİics
+.
+addNewTİic
+(
+cÜpus_wÜd_no
+);
+
+190 
+Tİic
+* 
+	gÃw_tİic
+ = 
+®l_tİics
+.
+g‘MubËTİic
+(
+§m¶e_tİic
+);
+
+191 
+	gÃw_bË
+->
+£tTİic
+(
+Ãw_tİic
+);
+
+195 
+TabË
+* 
+	gÃw_bË
+ = 
+docum’t
+->
+g‘MubËTabË
+(
+§m¶e_bË
+);
+
+196 
+	gwÜd
+->
+£tTabË
+(
+Ãw_bË
+);
+
+200 
+	gWÜdUts
+::
+Upd©eTabËFromWÜd
+(
+wÜd
+, 1);
+
+	@documnet.h
+
+1 #iâdeà
+DOCUMENT_H_
+
+
+2 
+	#DOCUMENT_H_
+
+
+	)
+
+4 
+	~<veùÜ
+>
+
+6 
+	~"tİic.h
+"
+
+8 
+usšg
+ 
+Çme¥aû
+ 
+	g¡d
+;
+
+10 
+Çme¥aû
+ 
+	ghdp
+ {
+
+12 
+şass
+ 
+	gTabË
+;
+
+15 şas 
+	cWÜd
+ {
+
+16 
+	gpublic
+:
+
+17 
+WÜd
+(
+id
+);
+
+18 ~
+WÜd
+();
+
+20 
+g‘Id
+(ècÚ¡ {  
+	gid_
+; }
+
+21 
+£tId
+(cÚ¡ & 
+id
+è{ 
+	gid_
+ = id; }
+
+23 
+TabË
+* 
+g‘MubËTabË
+(è{  
+	gbË_
+; }
+
+24 
+£tTabË
+(
+TabË
+* 
+bË
+è{ 
+	gbË_
+ =able; }
+
+28 
+	g´iv©e
+:
+
+30 
+id_
+;
+
+33 
+TabË
+* 
+	gbË_
+;
+
+39 şas 
+	cWÜdUts
+ {
+
+40 
+	gpublic
+:
+
+43 
+Upd©eTabËFromWÜd
+(
+WÜd
+* 
+wÜd
+, 
+upd©e
+);
+
+49 şas 
+	cTabË
+ {
+
+50 
+	gpublic
+:
+
+51 
+TabË
+();
+
+52 
+TabË
+(
+wÜd_couÁ
+);
+
+54 
+g‘WÜdCouÁ
+(ècÚ¡ {  
+	gwÜd_couÁ_
+; }
+
+55 
+£tWÜdCouÁ
+(cÚ¡ & 
+wÜd_couÁ
+è{ 
+	gwÜd_couÁ_
+ = word_count; }
+
+56 
+šcWÜdCouÁ
+(
+v®
+è{ 
+	gwÜd_couÁ_
+ += val; }
+
+58 
+Tİic
+* 
+g‘MuabËTİic
+(è{  
+	gtİic
+; }
+
+59 
+£tTİic
+(
+Tİic
+* 
+tİic
+è{ 
+	gtİic_
+ =opic; }
+
+61 
+g‘WÜdId
+(
+i
+ècÚ¡ {  
+	gwÜd_ids_
+[i]; }
+
+62 
+addWÜdId
+(
+wÜd_id
+è{ 
+	gwÜd_ids_
+.
+push_back
+(word_id); }
+
+63 
+»moveWodId
+(
+wÜd_id
+);
+
+65 
+	gveùÜ
+<>& 
+g‘WÜdIds
+(è{  
+	gwÜd_ids_
+; }
+
+66 
+	g´iv©e
+:
+
+68 
+wÜd_couÁ_
+;
+
+71 
+	gveùÜ
+<> 
+	gwÜd_ids_
+;
+
+74 
+Tİic
+* 
+	gtİic_
+;
+
+79 şas 
+	cTabËUts
+ {
+
+80 
+	gpublic
+:
+
+84 
+Upd©eTİicFromTabË
+(
+TabË
+* 
+bË
+,
+
+85 
+wÜd_id
+,
+
+86 
+upd©e
+);
+
+89 
+Upd©eTİicFromTabË
+(
+TabË
+* 
+bË
+
+
+90 
+upd©e
+)
+
+95 şas 
+	cDocum’t
+ {
+
+96 
+	gpublic
+:
+
+97 
+Docum’t
+(
+id
+);
+
+98 ~
+Docum’t
+();
+
+100 
+g‘WÜds
+(è{  
+	gwÜds_
+.
+size
+(); }
+
+101 
+g‘TabËs
+(è{  
+	gbËs_
+.
+size
+(); }
+
+103 
+addWÜd
+(cÚ¡ 
+WÜd
+& 
+wÜd
+è{ 
+	gwÜds_
+.
+push_back
+(word); }
+
+104 
+WÜd
+* 
+g‘MubËWÜd
+(
+i
+è{ 
+	g»uŒn
+ &(
+	gwÜds_
+[i]); }
+
+105 
+£tWÜds
+(cÚ¡ 
+veùÜ
+<
+WÜd
+>& 
+wÜds
+) {
+
+106 
+	gwÜds_
+ = 
+wÜds
+;
+
+109 
+addNewTabË
+() {
+
+110 
+TabË
+* 
+	gÃw_bË
+ = 
+Ãw
+ Table(0);
+
+111 
+	gbËs_
+.
+push_back
+(
+Ãw_bË
+);
+
+113 
+TabË
+* 
+g‘MubËTabË
+(
+i
+è{  
+	gbËs_
+[i]; }
+
+115 
+g‘Id
+(ècÚ¡ {  
+	gid_
+; }
+
+116 
+£tId
+(cÚ¡ 
+id
+è{ 
+	gid_
+ = id; }
+
+119 
+	g´iv©e
+:
+
+121 
+id_
+;
+
+124 
+	gveùÜ
+<
+	gWÜd
+> 
+	gwÜds_
+;
+
+127 
+	gveùÜ
+<
+	gTabË
+*> 
+	gbËs_
+;
+
+132 şas 
+	cDocum’tUts
+ {
+
+133 
+	gpublic
+:
+
+138 
+Sam¶eTabËs
+(
+Docum’t
+* 
+docum’t
+,
+
+139 
+boŞ
+ 
+»move
+,
+
+140 
+®pha
+,
+
+141 
+gamma
+);
+
+147 
+Sam¶eTabËFÜWÜd
+(
+Docum’t
+* 
+docum’t
+,
+
+148 
+WÜd
+* 
+wÜd
+,
+
+149 
+boŞ
+ 
+»move
+,
+
+150 
+®pha
+,
+
+151 
+gamma
+);
+
+	@test.cc
+
+1 
+	~<io¡»am
+>
+
+2 
+	~<m©h.h
+>
+
+4 
+	~"uts.h
+"
+
+6 
+usšg
+ 
+Çme¥aû
+ 
+	g¡d
+;
+
+8 
+	$maš
+() {
+
+9 
+veùÜ
+<> 
+log_´
+;
+
+10 
+log_´
+.
+	`push_back
+(
+	`log
+(1));
+
+11 
+log_´
+.
+	`push_back
+(
+	`log
+(0));
+
+14 
+¿nd_£ed
+ = 1234l;
+
+15 
+hdp
+::
+Uts
+::
+	`In™RªdomNumb”G’
+(
+¿nd_£ed
+);
+
+22 
+cout
+ << 
+hdp
+::
+Uts
+::
+	`LogSum
+(
+	`log
+(0),†og(2)è<< 
+’dl
+;
+
+23 
+cout
+ << 
+	`log
+(2è<< 
+’dl
+;
+
+25 
+cout
+ << 1 / (1 * 2.0è<< 
+’dl
+;
+
+26 
+cout
+ << 
+	`exp
+(
+	`log
+(0è* 2è<< 
+’dl
+;
+
+29 
+	}
+}
+
+	@topic.cc
+
+1 
+	~<m©h.h
+>
+
+4 
+	~"uts.h
+"
+
+5 
+	~"tİic.h
+"
+
+11 
+	gTİic
+::
+	$Tİic
+(
+cÜpus_wÜd_no
+)
+
+12 : 
+	`cÜpus_wÜd_no_
+(
+cÜpus_wÜd_no
+),
+
+13 
+	`bË_couÁ_
+(0),
+
+14 
+	$wÜd_couÁs_
+(
+cÜpus_wÜd_no
+, 0) {
+
+15 
+AÎTİics
+ 
+®l_tİics
+ = AÎTİics::
+	`G‘In¡ªû
+();
+
+16 
+‘a
+ = 
+®l_tİics
+.
+	`g‘E
+();
+
+17 
+lgam_w_‘a
+ = 
+	`g¦_sf_Êgamma
+(
+‘a
+);
+
+19 
+wÜd_couÁs_
+ = 
+	`veùÜ
+(
+cÜpus_wÜd_no
+, 0);
+
+20 
+lgam_wÜd_‘a_
+ = 
+	`veùÜ
+(
+cÜpus_wÜd_no
+, 
+lgam_w_‘a
+);
+
+22 
+log_w_´
+ = 
+	`log
+(1.0 / 
+cÜpus_wÜd_no
+);
+
+23 
+log_wÜd_´_
+ = 
+	`veùÜ
+(
+cÜpus_wÜd_no
+, 
+log_w_´
+);
+
+25 
+	}
+}
+
+27 
+	gTİic
+::
+	$upd©eWÜdCouÁs
+(
+wÜd_id
+, 
+upd©e
+) {
+
+28 
+wÜd_couÁs_
+[
+wÜd_id
+] +ğ
+upd©e
+;
+
+30 
+‘a
+ = 
+AÎAuthÜ
+::
+	`G‘In¡ªû
+().
+	`g‘E
+();
+
+31 
+wÜd_couÁ
+ = 
+wÜd_couÁs_
+[
+wÜd_id
+];
+
+33 
+lgam_wÜd_‘a_
+[
+wÜd_id
+] = 
+	`g¦_sf_Êgamma
+(
+wÜd_couÁ
+ + 
+‘a
+);
+
+34 
+log_wÜd_´_
+[
+wÜd_id
+] = 
+	`log
+(
+wÜd_couÁ
+/ (wÜd_couÁ + 
+‘a
+ * 
+cÜpus_wÜd_no_
+ ));
+
+35 
+	}
+}
+
+41 
+	gAÎTİics
+::~
+	$AÎTİics
+() {
+
+42 
+size
+ = 
+tİic_±rs_
+.
+	`size
+();
+
+43 
+i
+ = 0; i < 
+size
+; i++) {
+
+44 ià(
+tİic_±rs_
+[
+i
+] !ğ
+NULL
+) {
+
+45 
+d–‘e
+ 
+tİic_±rs_
+[
+i
+];
+
+48 
+	}
+}
+
+50 
+	gAÎTİics
+::
+AÎTİics
+& 
+	$G‘In¡ªû
+() {
+
+51 
+AÎTİics
+ 
+š¡ªû
+;
+
+52  
+š¡ªû
+;
+
+53 
+	}
+}
+
+55 
+	gAÎTİics
+::
+	$addNewTİic
+(
+cÜpus_wÜd_no
+) {
+
+56 
+Tİic
+* 
+tİic
+ = 
+Ãw
+ 
+	`Tİic
+(
+cÜpus_wÜd_no
+);
+
+57 
+tİic_±rs_
+.
+	`push_back
+(
+tİic
+);
+
+58 
+	}
+}
+
+60 
+	gAÎTİics
+::
+	$»moveTİic
+(
+Tİic
+* 
+tİic
+) {
+
+61 
+	`»moveFromVec
+(
+tİic_±rs_
+, 
+tİic
+);
+
+62 
+	}
+}
+
+	@topic.h
+
+1 #iâdeà
+TOPIC_H_
+
+
+2 
+	#TOPIC_H_
+
+
+	)
+
+4 
+	~<veùÜ
+>
+
+5 
+	~<g¦/g¦_sf.h
+>
+
+7 
+usšg
+ 
+Çme¥aû
+ 
+	g¡d
+;
+
+10 
+Çme¥aû
+ 
+	ghdp
+ {
+
+12 
+şass
+ 
+	gAÎTİics
+;
+
+17 şas 
+	cTİic
+ {
+
+18 
+	gpublic
+:
+
+19 
+Tİic
+(
+cÜpus_wÜd_no
+, 
+AÎTİics
+* 
+®l_tİics_
+);
+
+21 
+g‘CÜpusWÜdNo
+(ècÚ¡ {  
+	gcÜpus_wÜd_no_
+; }
+
+22 
+£tCÜpusWÜdNO
+(
+cÜpus_wÜd_no
+è{ 
+	gcÜpus_wÜd_no_
+ = corpus_word_no; }
+
+24 
+g‘TabËCouÁ
+(ècÚ¡ {  
+	gbË_couÁ_
+; }
+
+25 
+£tTabËCouÁ
+(
+bË_couÁ
+è{ 
+	gbË_couÁ
+ = 
+bË_couÁ_
+; }
+
+26 
+šcTabËCouÁ
+(
+v®
+è{ 
+	gbË_couÁ_
+ += val; }
+
+28 
+upd©eWÜdCouÁs
+(
+wÜd_id
+, 
+upd©e
+);
+
+30 
+g‘LgamWÜdE
+(
+wÜd_id
+ècÚ¡ {  
+	glgam_wÜd_‘a_
+[word_id]; }
+
+31 
+g‘LogWÜdPr
+(
+wÜd_id
+ècÚ¡ {  
+	glog_wÜd_´_
+[word_id]; }
+
+33 
+	g´iv©e
+:
+
+35 
+cÜpus_wÜd_no_
+;
+
+38 
+	gbË_couÁ_
+;
+
+41 
+	gvecÙr
+<> 
+	gwÜd_couÁs_
+;
+
+44 
+	gveùÜ
+<> 
+	glgam_wÜd_‘a_
+;
+
+47 
+	gveùÜ
+<> 
+	glog_wÜd_´_
+;
+
+54 şas 
+	cAÎTİics
+ {
+
+55 
+	gpublic
+:
+
+56 ~
+AÎTİics
+();
+
+59 
+	gAÎTİics
+& 
+G‘In¡ªû
+();
+
+61 
+g‘Tİics
+(ècÚ¡ {  
+	gtİic_±rs_
+.
+size
+(); }
+
+63 
+addNewTİic
+(
+cÜpus_wÜd_no
+);
+
+64 
+»moveTİic
+(
+Tİic
+* 
+tİic
+);
+
+66 
+Tİic
+* 
+g‘MubËTİic
+(
+i
+) {
+
+67  
+	gtİic_±rs_
+[
+i
+];
+
+70 
+g‘E
+(ècÚ¡ {  
+	g‘a_
+; }
+
+71 
+£tE
+(cÚ¡ & 
+‘a
+è{ 
+	g‘a_
+ =ƒta; }
+
+73 
+	g´iv©e
+:
+
+75 
+veùÜ
+<
+Tİic
+*> 
+tİic_±rs_
+;
+
+78 
+	g‘a_
+;
+
+81 
+AÎTİics
+() { }
+
+83 
+AÎTİics
+(cÚ¡ AÎTİics& 
+äom
+);
+
+84 
+	gAÎTİics
+& 
+	gİ”©Ü
+=(cÚ¡ 
+AÎTİics
+& 
+äom
+);
+
+	@utils.cc
+
+16 
+	~<as£¹.h
+>
+
+17 
+	~<m©h.h
+>
+
+18 
+	~<time.h
+>
+
+19 
+	~<g¦/g¦_sf.h
+>
+
+21 
+	~<io¡»am
+>
+
+23 
+	~"uts.h
+"
+
+25 
+Çme¥aû
+ 
+	ghdp
+ {
+
+31 
+g¦_ºg
+* 
+	gUts
+::
+RANDNUMGEN
+ = 
+NULL
+;
+
+33 
+	gUts
+::
+Sum
+(cÚ¡ 
+veùÜ
+<>& 
+v
+) {
+
+34 
+sum
+ = 0;
+
+35 
+	gsize
+ = 
+v
+.
+size
+();
+
+36 
+	gi
+ = 0; i < 
+	gsize
+; i++) {
+
+37 
+	gsum
+ +ğ
+v
+[
+i
+];
+
+39  
+	gsum
+;
+
+42 
+	gUts
+::
+LogSum
+(
+log_a
+, 
+log_b
+) {
+
+43 ià(
+	glog_a
+ < 
+	glog_b
+) {
+
+44 (
+	glog_b
+ + 
+log
+(1 + 
+exp
+(
+log_a
+ - 
+log_b
+)));
+
+46 (
+	glog_a
+ + 
+log
+(1 + 
+exp
+(
+log_b
+ - 
+log_a
+)));
+
+50 
+	gUts
+::
+Sam¶eFromLogPr
+(cÚ¡ 
+veùÜ
+<>& 
+log_´
+) {
+
+51 
+as£¹
+(
+log_´
+.
+size
+() > 0);
+
+53 
+	glog_sum
+ = 
+log_´
+[0];
+
+54 
+	gËv–s
+ = 
+log_´
+.
+size
+();
+
+57 
+	gi
+ = 1; i < 
+	gËv–s
+; i++) {
+
+58 
+	glog_sum
+ = 
+LogSum
+(
+log_sum
+, 
+log_´
+[
+i
+]);
+
+62 
+	g¿nd_no
+ = 
+RªdNo
+();
+
+64 
+	glog_exp
+ = 
+exp
+(
+log_´
+[0] - 
+log_sum
+);
+
+65 
+	g»suÉ
+ = 0;
+
+66 
+	g¿nd_no
+ >ğ
+log_exp
+) {
+
+67 
+»suÉ
+++;
+
+68 
+	glog_exp
+ +ğ
+exp
+(
+log_´
+[
+»suÉ
+] - 
+log_sum
+);
+
+71  
+	g»suÉ
+;
+
+74 
+	gUts
+::
+In™RªdomNumb”G’
+(
+ºg_£ed
+) {
+
+75 ià(
+RANDNUMGEN
+ !ğ
+NULL
+) ;
+
+77 
+	gRANDNUMGEN
+ = 
+g¦_ºg_®loc
+(
+g¦_ºg_us
+);
+
+78 
+	gcout
+ << "Rªdom s“d = " << 
+	gºg_£ed
+ << 
+	g’dl
+;
+
+79 
+g¦_ºg_£t
+(
+RANDNUMGEN
+, 
+ºg_£ed
+);
+
+82 
+	gUts
+::
+Shufæe
+(
+g¦_³rmutiÚ
+* 
+³rmutiÚ
+, 
+size
+) {
+
+83 
+as£¹
+(
+RANDNUMGEN
+ !ğ
+NULL
+);
+
+84 
+g¦_¿n_shufæe
+(
+RANDNUMGEN
+, 
+³rmutiÚ
+->
+d©a
+, 
+size
+, (
+size_t
+));
+
+87 
+	gUts
+::
+RªdGauss
+(
+m—n
+, 
+¡dev
+) {
+
+88 
+as£¹
+(
+RANDNUMGEN
+ !ğ
+NULL
+);
+
+89 
+	ggauss
+ = 
+g¦_¿n_gaussŸn_¿tio_m‘hod
+(
+RANDNUMGEN
+, 
+¡dev
+è+ 
+	gm—n
+;
+
+90 (
+	ggauss
+);
+
+93 
+	gUts
+::
+RªdNo
+() {
+
+94 
+as£¹
+(
+RANDNUMGEN
+ !ğ
+NULL
+);
+
+95  
+g¦_ºg_unifÜm
+(
+RANDNUMGEN
+);
+
+	@utils.h
+
+16 #iâdeà
+UTILS_H_
+
+
+17 
+	#UTILS_H_
+
+
+	)
+
+19 
+	~<g¦/g¦_³rmutiÚ.h
+>
+
+20 
+	~<g¦/g¦_¿ndi¡.h
+>
+
+22 
+	~<veùÜ
+>
+
+23 
+	~<®gÜ™hm
+>
+
+25 
+usšg
+ 
+Çme¥aû
+ 
+	g¡d
+;
+
+27 
+Çme¥aû
+ 
+	ghdp
+ {
+
+31 
+	g‹m¶©e
+<
+ty³Çme
+ 
+	gT
+>
+
+32 
+»moveFromVec
+(
+veùÜ
+<
+T
+>& 
+v
+, T 
+rg‘
+) {
+
+33 autØ
+	gfound
+ = 
+fšd
+(
+v
+.
+begš
+(), v.
+’d
+(), 
+rg‘
+);
+
+34 ià(
+	gfound
+ =ğ
+v
+.
+’d
+()) {
+
+37 
+v
+.
+”a£
+(
+found
+);
+
+45 şas 
+	cUts
+ {
+
+46 
+	gpublic
+:
+
+48 
+Sum
+(cÚ¡ 
+veùÜ
+<>& 
+v
+);
+
+55 
+LogSum
+(
+log_a
+, 
+log_b
+);
+
+63 
+Sam¶eFromLogPr
+(cÚ¡ 
+veùÜ
+<>& 
+log_´
+);
+
+66 
+Shufæe
+(
+g¦_³rmutiÚ
+* 
+³rmutiÚ
+, 
+size
+);
+
+70 
+In™RªdomNumb”G’
+(
+ºg_£ed
+);
+
+73 
+RªdGauss
+(
+m—n
+, 
+¡dev
+);
+
+76 
+RªdNo
+();
+
+78 
+	g´iv©e
+:
+
+79 
+g¦_ºg
+* 
+RANDNUMGEN
+;
+
+	@
+1
+.
+0
+9
+84
+corpus.cc
+corpus.h
+document.cc
+documnet.h
+test.cc
+topic.cc
+topic.h
+utils.cc
+utils.h

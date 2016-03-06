@@ -58,16 +58,16 @@ public:
 	Topic* getMuableTopic() { return topic; }
 	void setTopic(Topic* topic) { topic_ = topic; }
 
-	int getWordId(int i) const { return word_ids_[i]; }
-	void addWordId(int word_id) { word_ids_.push_back(word_id); }
-	void removeWodId(int word_id);
+	int getCountById(int word_id);
+	void updateMapWordCount(int word_id, int update);
 
+	unordered_map<int, int>& getMapWordCount() const { return map_word_count_; }
 private:
 	// Number of words.
 	int word_count_;
 
 	// Word ids assigned to the table.
-	vector<int> word_ids_; 
+	unordered_map<int, int> map_word_count_;
 
 	// A pointer to topoic the table is assigned to.
 	Topic* topic_;
@@ -77,6 +77,10 @@ private:
 // statistics correspond to table.
 class TableUtils {
 public:
+// Get word_ids and counts in the table.
+static void GetWordsAndCounts(Table* table,
+															vector<int>& word_ids,
+															vector<int>& counts);
 
 // Updating topic's statistics correspond to table.
 // and the word id.
@@ -85,8 +89,14 @@ static void UpdateTopicFromTable(Table* table,
 														int update);
 
 // Remove or add table to a topic.
-static void UpdateTopicFromTable(Table* table
-																			int update)
+// word_ids - all the word_ids in table.
+// counts - correspond word count in table.
+// remove - if true remove table from topic, 
+// otherwise add table to topic.
+static void UpdateTopicFromTable(Table* table,
+																 vector<int>& word_ids,
+																 vector<int>& counts,
+													 			 bool remove);
 };
 
 // The Document contains an id, a number of words.
