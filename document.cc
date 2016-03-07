@@ -45,6 +45,8 @@ Table::Table(int word_count)
 	topic_ = NULL;
 }
 
+
+
 int Table::getCountById(int word_id) {
 	auto it = map_word_count_.find(word_id);
 	if (it == word_id.end()) {
@@ -61,8 +63,11 @@ void updateMapWordCount(int word_id, int update) {
 	} else {
 		map_word_count_[word_id] += update;
 	}
-
 	assert(map_word_count_[word_id] >= 0);
+	if (map_word_count_[word_id] == 0) {
+		map_word_count_.erase(word_id);
+	}
+	
 	return;
 }
 
@@ -169,16 +174,61 @@ Document::~Document() {
 	}
 }
 
+void Table::removeTable(int pos) {
+	Table* table = tables_[pos];
+	assert(table->getWordCount() == 0);
+	assert(table->getMapWordCount().size() == 0);
+	Topic* topic = table->getMutableTopic();
+	topic->incTableCount(-1);
+	topic = NULL;
+	auto it = tables_.begin() + pos;
+	delete *it;
+	*it = NULL;
+	tables_.erase(it)
+}
+
 // =======================================================================
 // DocumentUtils
 // =======================================================================
 
+double DocumentUtils::AlphaScore(Document* document, 
+													 			 double alpha) {
+	int tables = document->getTables();
+	int words = document->getWords();
+	double score = 0.0;
+	score += tables * log(alpha) +
+					 gsl_sf_lngamma(alpha) - 
+					 gsl_sf_lngamma(words + alpha);
+	for (int i = 0; i < tables; i++) {
+		Table* table = document->getMutableTable(i);
+		score += gsl_sf_lngamma(table->getWordCount());
+	}
+	return score;
+}
+
+void DocumentUtils::CompactTables(Document* document) {
+	int tables = document->getTables();
+	for (int i = tables - 1; i >=0 ; --i) {
+		if (document->getMutableTable(i)->getWords() == 0) {
+			document->removeTable(i);	
+		}	
+	}
+}
 
 void DocumentUtils::SampleTables(Document* document,
+																 int permute_words,
 																 bool remove,
 																 double alpha,
 											    			 double gamma) {
-	// TODO
+	if (permute_words == 1) {
+		PermuteWords(document);
+	}
+
+	int words = document->getWords();
+	for (int i = 0; i < words; i++) {
+		Word* word = document->getMutableWord(i);
+		SampleTableForWord(document, word, remove, alpha, gamma);
+	}
 }
 
 void DocumentUtils::SampleTableForWord(Document* document,
@@ -191,7 +241,7 @@ void DocumentUtils::SampleTableForWord(Document* document,
 	int tables = document->getTables();
 	vector<double> log_pr(tables + 1, log(0));
 
-	AllTopics all_topics = AllTopics.GetInstance();
+	AllTopics& all_topics = AllTopics.GetInstance();
 	int topics = all_topics.getTopics();
 	assert(topics > 0);
 
@@ -266,5 +316,33 @@ void DocumentUtils::SampleTableForWord(Document* document,
 	WordUtils::UpdateTableFromWord(word, 1);
 }
 
+void DocumentUtils::SampleTopics(Document* document) {
+	int tables = document->getTables();
+	for (int i = 0; i < tables; i++) {
+		Table* table = document->getMutableTable(i);
+		TableUtils::SampleTopicForTable(table);
+	}
+}
+
+void DocumentUtils::PermuteWords(Document* document) {
+  int size = document->getWords();
+  vector<Word> permuted_words;
+
+  // Permute the values in perm.
+  // These values correspond to the indices of the words in the
+  // word vector of the document.
+  gsl_permutation* perm = gsl_permutation_calloc(size);
+  Utils::Shuffle(perm, size);
+  int perm_size = perm->size;
+  assert(size == perm_size);
+
+  for (int i = 0; i < perm_size; i++) {
+    permuted_words.push_back(*document->getMutableWord(perm->data[i]));
+  }
+
+  document->setWords(permuted_words);
+
+  gsl_permutation_free(perm);
+}
 
 }  // namespace hdp

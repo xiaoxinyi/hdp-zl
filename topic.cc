@@ -12,7 +12,7 @@ Topic::Topic(int corpus_word_no)
 		: corpus_word_no_(corpus_word_no),
 		  table_count_(0),
 		  word_counts_(corpus_word_no, 0) {
-	AllTopics all_topics = AllTopics::GetInstance();
+	AllTopics& all_topics = AllTopics::GetInstance();
 	double eta = all_topics.getEta();
 	double lgam_w_eta = gsl_sf_lngamma(eta);
 
@@ -69,11 +69,55 @@ void AllTopics::removeTopic(Topic* topic) {
 	removeFromVec(topic_ptrs_, topic);
 } 
 
+void AllTopics::removeTopic(int pos) {
+	auto it = topic_ptrs_.begin() + pos;
+	Topic* topic = *it;
+	assert(topic->getTableCount() == 0);
+
+	delete *it;
+	topic = NULL;
+	*it = NULL;
+	topic_ptrs_.erase(it);
+}
+
+
 void AllTopics::removeLastTopic() {
 	int size = topic_ptrs_.size();
 	delete topic_ptrs_[size];
 	topic_ptrs_[size] = NULL;
 	topic_ptrs_.resize(size - 1);
+}
+
+void AllTOpics::compactTopics() {
+	int size = topic_ptrs_.size();
+	for (int i = size - 1; i >=0; --i) {
+		if (topic_ptrs_[i]->getTableCount() == 0) {
+			removeTopic(i);
+		}
+	}
+}
+
+// =======================================================================
+// TopicUtils
+// =======================================================================
+
+double TopicUtils::EtaScore(Topic* topic, double eta) {
+	double score = 0.0;
+	double lgam_eta = gsl_sf_lngamma(eta);
+	int corpus_word_no = topic->getCorpusWordNo();
+	int topic_words = 0;
+	
+	score += gsl_sf_lngamma(corpus_word_no * eta);
+	for (int i = 0; i < corpus_word_no; i++) {
+		int word_count = topic->getWordCount(i);
+		if (word_count > 0) {
+			topic_words += word_count;
+			score += gsl_sf_lngamma(word_count + eta) - lgam_eta;
+		}
+	}
+	score -= gsl_sf_lngamma(corpus_word_no * eta + topic_words);
+
+	return score;
 }
 
 // =======================================================================
@@ -118,3 +162,41 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 
 	return log_gamma_ratio;
 }
+
+
+// =======================================================================
+// AllTopicsUtils 
+// =======================================================================
+
+double AllTopicsUtils::GammaScore(double gamma) {
+	double score = 0.0;
+	AllTopics& all_topics = AllTopics.GetInstance();
+	int topics = all_topics.getTopics();
+	int table_total = 0;
+
+	for (int i = 0; i < topics; i++) {
+		Topics* topic = all_topics[i];
+		int tables = topic->getTableCount();
+		score += gsl_sf_lngamma(tables);
+		table_total += tables; 
+	}
+
+	score += topics * log(gamma) +
+					 gsl_sf_lngamma(gamma) - 
+					 gsl_sf_lngamma(table_total + gamma);
+}
+
+double AllTopicsUtils::EtaScore() {
+	AllTopics& all_topics = AllTopics.GetInstance();
+	int topics = all_topics.getTopics();
+	double eta = all_topics.getEta();
+
+	double score = 0.0;
+	for (int i = 0; i < topics; i++) {
+		Topic* topic = all_topics.getMutableTopic(i);
+		score += TopicUtils::EtaScore(topic, eta);
+	}
+
+	return score;
+}
+

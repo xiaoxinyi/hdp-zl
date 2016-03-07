@@ -113,6 +113,7 @@ public:
 	int getWords() { return words_.size(); }
 	int getTables() { return tables_.size(); }
 
+	void addWord(int id) { words_.push_back(Word(id)); }
 	void addWord(const Word& word) { words_.push_back(word); }
 	Word* getMutableWord(int i) { reutrn &(words_[i]); }
 	void setWords(const vector<Word>& words) {
@@ -123,6 +124,8 @@ public:
 		Table* new_table = new Table(0);
 		tables_.push_back(new_table);
 	}
+	void removeTable(int pos);
+
 	Table* getMutableTable(int i) { return tables_[i]; }
 
 	int getId() const { return id_; }
@@ -149,6 +152,7 @@ public:
 	// alpha - second level,
 	// gamma - first level.
 	static void SampleTables(Document* document,
+													 int permute_words,
 											     bool remove,
 											     double alpha,
 											     double gamma);
@@ -162,6 +166,19 @@ public:
 																 bool remove,
 																 double alpha,
 											    			 double gamma);
+
+	// Sample topic for each table given a document.
+	static void SampleTopics(Document* document);
+	
+	// Compress the unused tables.
+	static void CompactTables(Document* document);
+
+	// Compute alpha score - document partition score.
+	static double AlphaScore(Document* document, 
+													 double alpha);
+
+	// Permute words in the document.
+	static void PermuteWords(Document* document);
 };
 
 

@@ -9,9 +9,9 @@ FLAGS = -g -Wall  -I/usr/local/Cellar/gsl/1.16/include
 # GSL library
 LIBS = -lgsl -lgslcblas -L/usr/local/Cellar/gsl/1.16/lib
 
-default: hlda
+default: hdp
 
-hlda: $(OBJS) 
+hdp: $(OBJS) 
 	$(COMPILER) $(FLAGS) $(OBJS) -o hlda  $(LIBS)
 
 %.o: %.cc

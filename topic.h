@@ -50,9 +50,18 @@ private:
 
 };
 
+// The class provides functionality for computing
+// eta score.
+class TopicUtils {
+public:
+	// Computing eta score for given topic.
+	static double EtaScore(Topic* topic, double eta);
+};
+
 // AllTopics store all the topics globally.
 // This class provides functionality of 
-// adding new topic, removing topic.
+// adding new topic, removing topic,
+// compacting topics after sampling.
 class AllTopics {
 public:
 	~AllTopics();
@@ -64,7 +73,9 @@ public:
 
 	void addNewTopic(int corpus_word_no);
 	void removeTopic(Topic* topic);
+	void removeTopic(int pos);
 	void removeLastTopic();
+	void compactTopics();
 	
 	Topic* getMutableTopic(int i) {
 		return topic_ptrs_[i];
@@ -77,7 +88,7 @@ private:
 	// All topics.
 	vector<Topic*> topic_ptrs_;
 
-	// Dirichlet parameter.
+	// Dirichlet parameter for word in topic.
 	double eta_; 
 
 	// Private constructor.
@@ -87,6 +98,8 @@ private:
 	AllTopics& operator=(const AllTopics& from);
 };
 
+// This class provides functionality for computing
+// Log gamma ratio of each topic given a table.
 class TopicTableUtils {
 public:
 	// Compute log gamma ratio for table given a topic.
@@ -98,6 +111,19 @@ public:
 											 				Topic* topic,
 											 				vecotr<int>& word_ids,
 											 				vecotr<int>& counts);
+};
+
+// This class provides functionality for computing
+// Gamma score, Eta scores.
+class AllTopicsUtils {
+public:
+	// Compute gamma score.
+	// gamma - first level dirichlet process parameter.
+	static double GammaScore(double gamma);
+
+	// Compute eta score.
+	// eta - dirichlet distribution parameter of each topic.
+	static double EtaScore();
 };
 
 }  // namespace hdp

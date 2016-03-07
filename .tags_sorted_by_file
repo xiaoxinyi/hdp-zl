@@ -8,10 +8,41 @@ FLAGS	Makefile	/^FLAGS = -g -Wall  -I\/usr\/local\/Cellar\/gsl\/1.16\/include$/;
 LIBS	Makefile	/^LIBS = -lgsl -lgslcblas -L\/usr\/local\/Cellar\/gsl\/1.16\/lib$/;"	m
 OBJS	Makefile	/^OBJS = utils.o topic.o tree.o document.o corpus.o gibbs.o hlda_main.o$/;"	m
 SOURCE	Makefile	/^SOURCE = $(OBJS:.o=.cc)$/;"	m
+BUF_SIZE	corpus.cc	/^#define BUF_SIZE /;"	d	file:
+Corpus	corpus.cc	/^Corpus::Corpus()$/;"	f	class:hdp::Corpus
+Corpus	corpus.cc	/^Corpus::Corpus(double gamma, double alpha)$/;"	f	class:hdp::Corpus
+PermuteDocuments	corpus.cc	/^void CorpusUtils::PermuteDocuments(Corpus* corpus) {$/;"	f	class:hdp::CorpusUtils
+ReadCorpus	corpus.cc	/^void CorpusUtils::ReadCorpus($/;"	f	class:hdp::CorpusUtils
+hdp	corpus.cc	/^namespace hdp {$/;"	n	file:
+CORPUS_H_	corpus.h	/^#define CORPUS_H_$/;"	d
+Corpus	corpus.h	/^class Corpus {$/;"	c	namespace:hdp
+CorpusUtils	corpus.h	/^class CorpusUtils {$/;"	c	namespace:hdp
+addDocument	corpus.h	/^  void addDocument(const Document& document) {$/;"	f	class:hdp::Corpus
+alpha_	corpus.h	/^  double alpha_;$/;"	m	class:hdp::Corpus
+documents_	corpus.h	/^  vector<Document> documents_;$/;"	m	class:hdp::Corpus
+gamma_	corpus.h	/^  double gamma_;$/;"	m	class:hdp::Corpus
+getAlpha	corpus.h	/^  int getAlpha() const { return alpha_; }$/;"	f	class:hdp::Corpus
+getDocuments	corpus.h	/^  int getDocuments() const { return documents_.size(); }$/;"	f	class:hdp::Corpus
+getGamma	corpus.h	/^  int getGamma() const { return gamma_; }$/;"	f	class:hdp::Corpus
+getMutableDocument	corpus.h	/^  Document* getMutableDocument(int i) { return &documents_.at(i); }$/;"	f	class:hdp::Corpus
+getWordNo	corpus.h	/^  int getWordNo() const { return word_no_; }$/;"	f	class:hdp::Corpus
+getWordTotal	corpus.h	/^  int getWordTotal() const { return word_total_; }$/;"	f	class:hdp::Corpus
+hdp	corpus.h	/^namespace hdp {$/;"	n
+setAlpha	corpus.h	/^  void setAlpha(int alpha) { alpha_ = alpha; }$/;"	f	class:hdp::Corpus
+setDocuments	corpus.h	/^  void setDocuments(const vector<Document>& documents) {$/;"	f	class:hdp::Corpus
+setGamma	corpus.h	/^  void setGamma(int gamma) { gamma_ = gamma; }$/;"	f	class:hdp::Corpus
+setWordNo	corpus.h	/^  void setWordNo(int word_no) { word_no_ = word_no; }$/;"	f	class:hdp::Corpus
+setWordTotal	corpus.h	/^  void setWordTotal(int word_total) { word_total_ = word_total; }$/;"	f	class:hdp::Corpus
+word_no_	corpus.h	/^  int word_no_;$/;"	m	class:hdp::Corpus
+word_total_	corpus.h	/^  int word_total_;$/;"	m	class:hdp::Corpus
+AlphaScore	document.cc	/^double DocumentUtils::AlphaScore(Document* document, $/;"	f	class:hdp::DocumentUtils
+CompactTables	document.cc	/^void DocumentUtils::CompactTables(Document* document) {$/;"	f	class:hdp::DocumentUtils
 Document	document.cc	/^Document::Document(int id) $/;"	f	class:hdp::Document
 GetWordsAndCounts	document.cc	/^void TableUtils::GetWordsAndCounts(Table* table,$/;"	f	class:hdp::TableUtils
+PermuteWords	document.cc	/^void DocumentUtils::PermuteWords(Document* document) {$/;"	f	class:hdp::DocumentUtils
 SampleTableForWord	document.cc	/^void DocumentUtils::SampleTableForWord(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTables	document.cc	/^void DocumentUtils::SampleTables(Document* document,$/;"	f	class:hdp::DocumentUtils
+SampleTopicForTable	document.cc	/^void TableUtils::SampleTopicForTable(Table* table, $/;"	f	class:hdp::TableUtils
 Table	document.cc	/^Table::Table()$/;"	f	class:hdp::Table
 Table	document.cc	/^Table::Table(int word_count)$/;"	f	class:hdp::Table
 UpdateTableFromWord	document.cc	/^void WordUtils::UpdateTableFromWord(Word* word,$/;"	f	class:hdp::WordUtils
@@ -20,6 +51,7 @@ UpdateTopicFromTable	document.cc	/^void TableUtils::UpdateTopicFromTable(Table* 
 Word	document.cc	/^Word::Word(int id) $/;"	f	class:hdp::Word
 getCountById	document.cc	/^int Table::getCountById(int word_id) {$/;"	f	class:hdp::Table
 hdp	document.cc	/^namespace hdp {$/;"	n	file:
+removeTable	document.cc	/^void Table::removeTable(int pos) {$/;"	f	class:hdp::Table
 updateMapWordCount	document.cc	/^void updateMapWordCount(int word_id, int update) {$/;"	f	namespace:hdp
 ~Document	document.cc	/^Document::~Document() {$/;"	f	class:hdp::Document
 ~Word	document.cc	/^Word::~Word() {}$/;"	f	class:hdp::Word
@@ -32,6 +64,7 @@ Word	documnet.h	/^class Word {$/;"	c	namespace:hdp
 WordUtils	documnet.h	/^class WordUtils {$/;"	c	namespace:hdp
 addNewTable	documnet.h	/^	void addNewTable() {$/;"	f	class:hdp::Document
 addWord	documnet.h	/^	void addWord(const Word& word) { words_.push_back(word); }$/;"	f	class:hdp::Document
+addWord	documnet.h	/^	void addWord(int id) { words_.push_back(Word(id)); }$/;"	f	class:hdp::Document
 getId	documnet.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Document
 getId	documnet.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Word
 getMapWordCount	documnet.h	/^	unordered_map<int, int>& getMapWordCount() const { return map_word_count_; }$/;"	f	class:hdp::Table
@@ -60,17 +93,27 @@ word_count_	documnet.h	/^	int word_count_;$/;"	m	class:hdp::Table
 words_	documnet.h	/^	vector<Word> words_;$/;"	m	class:hdp::Document
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 main	test.cc	/^int main() {$/;"	f
+EtaScore	topic.cc	/^double TopicUtils::EtaScore(Topic* topic, double eta) {$/;"	f	class:TopicUtils
+EtaScores	topic.cc	/^double AllTopicsUtils::EtaScores() {$/;"	f	class:AllTopicsUtils
+GammaScore	topic.cc	/^double AllTopicsUtils::GammaScore(double gamma) {$/;"	f	class:AllTopicsUtils
 GetInstance	topic.cc	/^AllTopics::AllTopics& GetInstance() {$/;"	f
 LogGammaRatio	topic.cc	/^double TopicTableUtils::LogGammaRatio(Table* table,$/;"	f	class:TopicTableUtils
 Topic	topic.cc	/^Topic::Topic(int corpus_word_no)$/;"	f	class:Topic
 addNewTopic	topic.cc	/^void AllTopics::addNewTopic(int corpus_word_no) {$/;"	f	class:AllTopics
+compactTopics	topic.cc	/^void AllTOpics::compactTopics() {$/;"	f	class:AllTOpics
+getTopicWords	topic.cc	/^int Topic::getTopicWords() const {$/;"	f	class:Topic
+removeLastTopic	topic.cc	/^void AllTopics::removeLastTopic() {$/;"	f	class:AllTopics
 removeTopic	topic.cc	/^void AllTopics::removeTopic(Topic* topic) {$/;"	f	class:AllTopics
+removeTopic	topic.cc	/^void AllTopics::removeTopic(int pos) {$/;"	f	class:AllTopics
 updateWordCounts	topic.cc	/^void Topic::updateWordCounts(int word_id, int update) {$/;"	f	class:Topic
 ~AllTopics	topic.cc	/^AllTopics::~AllTopics() {$/;"	f	class:AllTopics
 AllTopics	topic.h	/^	AllTopics() { }$/;"	f	class:hdp::AllTopics
 AllTopics	topic.h	/^class AllTopics {$/;"	c	namespace:hdp
+AllTopicsUtils	topic.h	/^class AllTopicsUtils {$/;"	c	namespace:hdp
 TOPIC_H_	topic.h	/^#define TOPIC_H_$/;"	d
 Topic	topic.h	/^class Topic {$/;"	c	namespace:hdp
+TopicTableUtils	topic.h	/^class TopicTableUtils {$/;"	c	namespace:hdp
+TopicUtils	topic.h	/^class TopicUtils {$/;"	c	namespace:hdp
 corpus_word_no_	topic.h	/^	int corpus_word_no_;$/;"	m	class:hdp::Topic
 eta_	topic.h	/^	double eta_; $/;"	m	class:hdp::AllTopics
 getCorpusWordNo	topic.h	/^	int getCorpusWordNo() const { return corpus_word_no_; }$/;"	f	class:hdp::Topic
@@ -80,6 +123,7 @@ getLogWordPr	topic.h	/^	double getLogWordPr(int word_id) const { return log_word
 getMutableTopic	topic.h	/^	Topic* getMutableTopic(int i) {$/;"	f	class:hdp::AllTopics
 getTableCount	topic.h	/^	int getTableCount() const { return table_count_; }$/;"	f	class:hdp::Topic
 getTopics	topic.h	/^	int getTopics() const { return topic_ptrs_.size(); }$/;"	f	class:hdp::AllTopics
+getWordCount	topic.h	/^	int getWordCount(int word_id) const { return word_counts_[word_id]; }$/;"	f	class:hdp::Topic
 hdp	topic.h	/^namespace hdp {$/;"	n
 incTableCount	topic.h	/^	void incTableCount(int val) { table_count_ += val; }$/;"	f	class:hdp::Topic
 lgam_word_eta_	topic.h	/^	vector<double> lgam_word_eta_; $/;"	m	class:hdp::Topic
@@ -103,4 +147,5 @@ RANDNUMGEN	utils.h	/^  static gsl_rng* RANDNUMGEN;$/;"	m	class:hdp::Utils
 UTILS_H_	utils.h	/^#define UTILS_H_$/;"	d
 Utils	utils.h	/^class Utils {$/;"	c	namespace:hdp
 hdp	utils.h	/^namespace hdp {$/;"	n
+removeFromVec	utils.h	/^void removeFromVec(vector<T*>& v, T* target) {$/;"	f	namespace:hdp
 removeFromVec	utils.h	/^void removeFromVec(vector<T>& v, T target) {$/;"	f	namespace:hdp
