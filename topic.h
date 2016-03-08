@@ -14,7 +14,7 @@ namespace hdp {
 // lgam_word_eta - ln(gamma(w + eta)).
 class Topic {
 public:
-	Topic(int corpus_word_no, AllTopics* all_topics_);
+	Topic(int corpus_word_no);
 
 	int getCorpusWordNo() const { return corpus_word_no_; }
 	void setCorpusWordNO(int corpus_word_no) { corpus_word_no_ = corpus_word_no; }

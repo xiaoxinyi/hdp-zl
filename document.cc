@@ -241,7 +241,7 @@ void DocumentUtils::SampleTableForWord(Document* document,
 	int tables = document->getTables();
 	vector<double> log_pr(tables + 1, log(0));
 
-	AllTopics& all_topics = AllTopics.GetInstance();
+	AllTopics& all_topics = AllTopics::GetInstance();
 	int topics = all_topics.getTopics();
 	assert(topics > 0);
 

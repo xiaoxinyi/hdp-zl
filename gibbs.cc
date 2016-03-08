@@ -105,7 +105,7 @@ void GibbsSampler::ReadGibbsInput(
   gibbs_state->setSampleGamma(sample_gamma);
   gibbs_state->setCorpus(corpus);
 
-  AllTopics.GetInstance().setEta(eta);
+  AllTopics::GetInstance().setEta(eta);
 
 }
 
@@ -131,7 +131,7 @@ void GibbsSampler::InitGibbsState(
 
     DocumentUtils::SampleTopics(document);
 
-    AllTopics.GetInstance().compactTopics();
+    AllTopics::GetInstance().compactTopics();
 
 	}
 
@@ -206,7 +206,7 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
 
     DocumentUtils::SampleTopics(document);
 
-    AllTopics.GetInstance().compactTopics();
+    AllTopics::GetInstance().compactTopics();
   }
 
   // Sample hyper-parameters.

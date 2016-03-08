@@ -17,18 +17,18 @@ Topic::Topic(int corpus_word_no)
 	double eta = all_topics.getEta();
 	double lgam_w_eta = gsl_sf_lngamma(eta);
 
-	word_counts_ = vector(corpus_word_no, 0);
-	lgam_word_eta_ = vector(corpus_word_no, lgam_w_eta);
+	word_counts_ = vector<int>(corpus_word_no, 0);
+	lgam_word_eta_ = vector<double>(corpus_word_no, lgam_w_eta);
 
 	double log_w_pr = log(1.0 / corpus_word_no);
-	log_word_pr_ = vector(corpus_word_no, log_w_pr);
+	log_word_pr_ = vector<double>(corpus_word_no, log_w_pr);
 
 }
 
 void Topic::updateWordCounts(int word_id, int update) {
 	word_counts_[word_id] += update;
 
-	double eta = AllAuthor::GetInstance().getEta();
+	double eta = AllTopics::GetInstance().getEta();
 	int word_count = word_counts_[word_id]; 
 		
 	lgam_word_eta_[word_id] = gsl_sf_lngamma(word_count + eta);
@@ -172,12 +172,12 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 
 double AllTopicsUtils::GammaScore(double gamma) {
 	double score = 0.0;
-	AllTopics& all_topics = AllTopics.GetInstance();
+	AllTopics& all_topics = AllTopics::GetInstance();
 	int topics = all_topics.getTopics();
 	int table_total = 0;
 
 	for (int i = 0; i < topics; i++) {
-		Topics* topic = all_topics[i];
+		Topics* topic = all_topics.getMutableTopic(i);
 		int tables = topic->getTableCount();
 		score += gsl_sf_lngamma(tables);
 		table_total += tables; 
@@ -189,7 +189,7 @@ double AllTopicsUtils::GammaScore(double gamma) {
 }
 
 double AllTopicsUtils::EtaScore() {
-	AllTopics& all_topics = AllTopics.GetInstance();
+	AllTopics& all_topics = AllTopics::GetInstance();
 	int topics = all_topics.getTopics();
 	double eta = all_topics.getEta();
 
