@@ -95,6 +95,7 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 														int word_id,
 														int update) {
 	Topic* topic = table->getMutableTopic();
+	topic->incTopicWordNo(update);
 	topic->updateWordCounts(word_id, update);
 }
 
@@ -114,7 +115,8 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 }
 
 void TableUtils::SampleTopicForTable(Table* table, 
-																		 double gamma) {
+																		 double gamma，
+																		 bool remove) {
 	AllTopics& all_topics = AllTopics::GetInstance();
 	int topics = all_topics.getTopics();
 
@@ -149,11 +151,15 @@ void TableUtils::SampleTopicForTable(Table* table,
 	Topic* new_topic = all_topics.getMutableTopic(sample_topic);
 
 	if (old_topic != new_topic) {
+		if (remove) {
+			TableUtils::UpdateTopicFromTable(table, word_ids, counts, -1);	
+		}
+		
 		table->setTopic(new_topic);
 		TableUtils::UpdateTopicFromTable(table, word_ids, counts, 1);
 	}
 
-	if (sample_topic == topics) {
+	if (sample_topic != topics) {
 		all_topics.removeLastTopic();
 	}
 }
@@ -308,6 +314,7 @@ void DocumentUtils::SampleTableForWord(Document* document,
 		// Set topic for new table.
 		Topic* new_topic = all_topics.getMutableTopic(sample_topic);
 		new_table->setTopic(new_topic);
+		new_topic->incTableCount(1);
 	} else {
 		// Table is not new created. 
 		// Set table for word.

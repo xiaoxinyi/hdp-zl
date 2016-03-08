@@ -18,6 +18,10 @@ class Topic {
 public:
 	Topic(int corpus_word_no);
 
+	int getTopicWordNo() const { return topic_word_no_; }
+	void setTopicWordNo(int topic_word_no) { topic_word_no_ = topic_word_no; }
+	void incTopicWordNo(int val) { topic_word_no_ += val; }
+
 	int getCorpusWordNo() const { return corpus_word_no_; }
 	void setCorpusWordNO(int corpus_word_no) { corpus_word_no_ = corpus_word_no; }
 
@@ -36,7 +40,8 @@ private:
 	// Corpus word number - vocabulary size.
 	int corpus_word_no_;
 
-
+	// Word count in the topic.
+	int topic_word_no_;
 
 	// The count of tables pointing this topic.
 	int table_count_;

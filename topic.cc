@@ -11,6 +11,7 @@ namespace hdp {
 
 Topic::Topic(int corpus_word_no)
 		: corpus_word_no_(corpus_word_no),
+			topic_word_no_(0),
 		  table_count_(0),
 		  word_counts_(corpus_word_no, 0) {
 	AllTopics& all_topics = AllTopics::GetInstance();
@@ -32,7 +33,7 @@ void Topic::updateWordCounts(int word_id, int update) {
 	int word_count = word_counts_[word_id]; 
 		
 	lgam_word_eta_[word_id] = gsl_sf_lngamma(word_count + eta);
-	log_word_pr_[word_id] = log(word_count + eta) -log(word_count + eta * corpus_word_no_ );
+	log_word_pr_[word_id] = log(word_count + eta) -log(topic_word_no_ + eta * corpus_word_no_ );
 }
 
 int Topic::getTopicWords() const {

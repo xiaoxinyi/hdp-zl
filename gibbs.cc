@@ -133,7 +133,7 @@ void GibbsSampler::InitGibbsState(
     														alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
-    DocumentUtils::SampleTopics(document, gamma);
+    DocumentUtils::SampleTopics(document, gamma, false);
 
     AllTopics::GetInstance().compactTopics();
 
@@ -213,7 +213,7 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
 																alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
-    DocumentUtils::SampleTopics(document, gamma);
+    DocumentUtils::SampleTopics(document, gamma, true);
 
     AllTopics::GetInstance().compactTopics();
   }

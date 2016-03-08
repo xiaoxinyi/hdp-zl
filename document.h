@@ -100,7 +100,9 @@ static void UpdateTopicFromTable(Table* table,
 													 			 int update);
 
 // Sample a topic for a table.
-static void SampleTopicForTable(Table* table, double gamma);
+static void SampleTopicForTable(Table* table, 
+																double gamma,
+																bool remove);
 };
 
 // The Document contains an id, a number of words.
@@ -170,7 +172,7 @@ public:
 											    			 int corpus_word_no);
 
 	// Sample topic for each table given a document.
-	static void SampleTopics(Document* document);
+	// static void SampleTopics(Document* document, bool remove);
 	
 	// Compress the unused tables.
 	static void CompactTables(Document* document);
@@ -183,7 +185,7 @@ public:
 	static void PermuteWords(Document* document);
 
 	// Sample Topics for all tables given a document.
-	static void SampleTopics(Document* document, double gamma); 
+	static void SampleTopics(Document* document, double gamma, bool remove); 
 };
 
 

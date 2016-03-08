@@ -44,55 +44,54 @@ PermuteWords	document.cc	/^void DocumentUtils::PermuteWords(Document* document) 
 SampleTableForWord	document.cc	/^void DocumentUtils::SampleTableForWord(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTables	document.cc	/^void DocumentUtils::SampleTables(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTopicForTable	document.cc	/^void TableUtils::SampleTopicForTable(Table* table, $/;"	f	class:hdp::TableUtils
-SampleTopics	document.cc	/^void DocumentUtils::SampleTopics(Document* document) {$/;"	f	class:hdp::DocumentUtils
+SampleTopics	document.cc	/^void DocumentUtils::SampleTopics(Document* document, double gamma) {$/;"	f	class:hdp::DocumentUtils
 Table	document.cc	/^Table::Table()$/;"	f	class:hdp::Table
 Table	document.cc	/^Table::Table(int word_count)$/;"	f	class:hdp::Table
 UpdateTableFromWord	document.cc	/^void WordUtils::UpdateTableFromWord(Word* word,$/;"	f	class:hdp::WordUtils
-UpdateTopic	document.cc	/^void TableUtils::UpdateTopic(Table* table,$/;"	f	class:hdp::TableUtils
 UpdateTopicFromTable	document.cc	/^void TableUtils::UpdateTopicFromTable(Table* table,$/;"	f	class:hdp::TableUtils
 Word	document.cc	/^Word::Word(int id) $/;"	f	class:hdp::Word
 getCountById	document.cc	/^int Table::getCountById(int word_id) {$/;"	f	class:hdp::Table
 hdp	document.cc	/^namespace hdp {$/;"	n	file:
-removeTable	document.cc	/^void Table::removeTable(int pos) {$/;"	f	class:hdp::Table
-updateMapWordCount	document.cc	/^void updateMapWordCount(int word_id, int update) {$/;"	f	namespace:hdp
+removeTable	document.cc	/^void Document::removeTable(int pos) {$/;"	f	class:hdp::Document
+updateMapWordCount	document.cc	/^void Table::updateMapWordCount(int word_id, int update) {$/;"	f	class:hdp::Table
 ~Document	document.cc	/^Document::~Document() {$/;"	f	class:hdp::Document
 ~Word	document.cc	/^Word::~Word() {}$/;"	f	class:hdp::Word
-DOCUMENT_H_	documnet.h	/^#define DOCUMENT_H_$/;"	d
-Document	documnet.h	/^class Document {$/;"	c	namespace:hdp
-DocumentUtils	documnet.h	/^class DocumentUtils {$/;"	c	namespace:hdp
-Table	documnet.h	/^class Table {$/;"	c	namespace:hdp
-TableUtils	documnet.h	/^class TableUtils {$/;"	c	namespace:hdp
-Word	documnet.h	/^class Word {$/;"	c	namespace:hdp
-WordUtils	documnet.h	/^class WordUtils {$/;"	c	namespace:hdp
-addNewTable	documnet.h	/^	void addNewTable() {$/;"	f	class:hdp::Document
-addWord	documnet.h	/^	void addWord(const Word& word) { words_.push_back(word); }$/;"	f	class:hdp::Document
-addWord	documnet.h	/^	void addWord(int id) { words_.push_back(Word(id)); }$/;"	f	class:hdp::Document
-getId	documnet.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Document
-getId	documnet.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Word
-getMapWordCount	documnet.h	/^	unordered_map<int, int>& getMapWordCount() const { return map_word_count_; }$/;"	f	class:hdp::Table
-getMuableTopic	documnet.h	/^	Topic* getMuableTopic() { return topic; }$/;"	f	class:hdp::Table
-getMutableTable	documnet.h	/^	Table* getMutableTable() { return table_; }$/;"	f	class:hdp::Word
-getMutableTable	documnet.h	/^	Table* getMutableTable(int i) { return tables_[i]; }$/;"	f	class:hdp::Document
-getMutableWord	documnet.h	/^	Word* getMutableWord(int i) { reutrn &(words_[i]); }$/;"	f	class:hdp::Document
-getTables	documnet.h	/^	int getTables() { return tables_.size(); }$/;"	f	class:hdp::Document
-getWordCount	documnet.h	/^	int getWordCount() const { return word_count_; }$/;"	f	class:hdp::Table
-getWords	documnet.h	/^	int getWords() { return words_.size(); }$/;"	f	class:hdp::Document
-hdp	documnet.h	/^namespace hdp {$/;"	n
-id_	documnet.h	/^	int id_;$/;"	m	class:hdp::Document
-id_	documnet.h	/^	int id_;$/;"	m	class:hdp::Word
-incWordCount	documnet.h	/^	void incWordCount(int val) { word_count_ += val; }$/;"	f	class:hdp::Table
-map_word_count_	documnet.h	/^	unordered_map<int, int> map_word_count_;$/;"	m	class:hdp::Table
-setId	documnet.h	/^	void setId(const int id) { id_ = id; }$/;"	f	class:hdp::Document
-setId	documnet.h	/^	void setId(const int& id) { id_ = id; }$/;"	f	class:hdp::Word
-setTable	documnet.h	/^	void setTable(Table* table) { table_ = table; }$/;"	f	class:hdp::Word
-setTopic	documnet.h	/^	void setTopic(Topic* topic) { topic_ = topic; }$/;"	f	class:hdp::Table
-setWordCount	documnet.h	/^	void setWordCount(const int& word_count) { word_count_ = word_count; }$/;"	f	class:hdp::Table
-setWords	documnet.h	/^	void setWords(const vector<Word>& words) {$/;"	f	class:hdp::Document
-table_	documnet.h	/^	Table* table_;$/;"	m	class:hdp::Word
-tables_	documnet.h	/^	vector<Table*> tables_;  $/;"	m	class:hdp::Document
-topic_	documnet.h	/^	Topic* topic_;$/;"	m	class:hdp::Table
-word_count_	documnet.h	/^	int word_count_;$/;"	m	class:hdp::Table
-words_	documnet.h	/^	vector<Word> words_;$/;"	m	class:hdp::Document
+DOCUMENT_H_	document.h	/^#define DOCUMENT_H_$/;"	d
+Document	document.h	/^class Document {$/;"	c	namespace:hdp
+DocumentUtils	document.h	/^class DocumentUtils {$/;"	c	namespace:hdp
+Table	document.h	/^class Table {$/;"	c	namespace:hdp
+TableUtils	document.h	/^class TableUtils {$/;"	c	namespace:hdp
+Word	document.h	/^class Word {$/;"	c	namespace:hdp
+WordUtils	document.h	/^class WordUtils {$/;"	c	namespace:hdp
+addNewTable	document.h	/^	void addNewTable() {$/;"	f	class:hdp::Document
+addWord	document.h	/^	void addWord(const Word& word) { words_.push_back(word); }$/;"	f	class:hdp::Document
+addWord	document.h	/^	void addWord(int id) { words_.push_back(Word(id)); }$/;"	f	class:hdp::Document
+getId	document.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Document
+getId	document.h	/^	int getId() const { return id_; }$/;"	f	class:hdp::Word
+getMapWordCount	document.h	/^	unordered_map<int, int>& getMapWordCount() { return map_word_count_; }$/;"	f	class:hdp::Table
+getMutableTable	document.h	/^	Table* getMutableTable() { return table_; }$/;"	f	class:hdp::Word
+getMutableTable	document.h	/^	Table* getMutableTable(int i) { return tables_[i]; }$/;"	f	class:hdp::Document
+getMutableTopic	document.h	/^	Topic* getMutableTopic() { return topic_; }$/;"	f	class:hdp::Table
+getMutableWord	document.h	/^	Word* getMutableWord(int i) { return &(words_[i]); }$/;"	f	class:hdp::Document
+getTables	document.h	/^	int getTables() { return tables_.size(); }$/;"	f	class:hdp::Document
+getWordCount	document.h	/^	int getWordCount() const { return word_count_; }$/;"	f	class:hdp::Table
+getWords	document.h	/^	int getWords() { return words_.size(); }$/;"	f	class:hdp::Document
+hdp	document.h	/^namespace hdp {$/;"	n
+id_	document.h	/^	int id_;$/;"	m	class:hdp::Document
+id_	document.h	/^	int id_;$/;"	m	class:hdp::Word
+incWordCount	document.h	/^	void incWordCount(int val) { word_count_ += val; }$/;"	f	class:hdp::Table
+map_word_count_	document.h	/^	unordered_map<int, int> map_word_count_;$/;"	m	class:hdp::Table
+setId	document.h	/^	void setId(const int id) { id_ = id; }$/;"	f	class:hdp::Document
+setId	document.h	/^	void setId(const int& id) { id_ = id; }$/;"	f	class:hdp::Word
+setTable	document.h	/^	void setTable(Table* table) { table_ = table; }$/;"	f	class:hdp::Word
+setTopic	document.h	/^	void setTopic(Topic* topic) { topic_ = topic; }$/;"	f	class:hdp::Table
+setWordCount	document.h	/^	void setWordCount(const int& word_count) { word_count_ = word_count; }$/;"	f	class:hdp::Table
+setWords	document.h	/^	void setWords(const vector<Word>& words) {$/;"	f	class:hdp::Document
+table_	document.h	/^	Table* table_;$/;"	m	class:hdp::Word
+tables_	document.h	/^	vector<Table*> tables_;  $/;"	m	class:hdp::Document
+topic_	document.h	/^	Topic* topic_;$/;"	m	class:hdp::Table
+word_count_	document.h	/^	int word_count_;$/;"	m	class:hdp::Table
+words_	document.h	/^	vector<Word> words_;$/;"	m	class:hdp::Document
 BUF_SIZE	gibbs.cc	/^#define BUF_SIZE /;"	d	file:
 DEFAULT_HYPER_LAG	gibbs.cc	/^#define DEFAULT_HYPER_LAG /;"	d	file:
 DEFAULT_SAMPLE_ETA	gibbs.cc	/^#define DEFAULT_SAMPLE_ETA /;"	d	file:
@@ -108,56 +107,56 @@ ReadGibbsInput	gibbs.cc	/^void GibbsSampler::ReadGibbsInput($/;"	f	class:hdp::Gi
 computeGibbsScore	gibbs.cc	/^double GibbsState::computeGibbsScore() {$/;"	f	class:hdp::GibbsState
 hdp	gibbs.cc	/^namespace hdp {$/;"	n	file:
 GIBBS_H_	gibbs.h	/^#define GIBBS_H_$/;"	d
-GibbsSampler	gibbs.h	/^class GibbsSampler {$/;"	c	namespace:hlda
-GibbsState	gibbs.h	/^class GibbsState {$/;"	c	namespace:hlda
-alpha_score_	gibbs.h	/^  double alpha_score_;$/;"	m	class:hlda::GibbsState
-corpus_	gibbs.h	/^  Corpus corpus_;$/;"	m	class:hlda::GibbsState
-eta_score_	gibbs.h	/^  double eta_score_;$/;"	m	class:hlda::GibbsState
-gamma_score_	gibbs.h	/^  double gamma_score_;$/;"	m	class:hlda::GibbsState
-getAlphaScore	gibbs.h	/^  double getAlphaScore() const { return alpha_score_; }$/;"	f	class:hlda::GibbsState
-getEtaScore	gibbs.h	/^  double getEtaScore() const { return eta_score_; }$/;"	f	class:hlda::GibbsState
-getGammaScore	gibbs.h	/^  double getGammaScore() const { return gamma_score_; }$/;"	f	class:hlda::GibbsState
-getHyperLag	gibbs.h	/^  int getHyperLag() const { return hyper_lag_; }$/;"	f	class:hlda::GibbsState
-getIteration	gibbs.h	/^  int getIteration() const { return iteration_; }$/;"	f	class:hlda::GibbsState
-getLevelLag	gibbs.h	/^  int getLevelLag() const { return level_lag_; }$/;"	f	class:hlda::GibbsState
-getMaxScore	gibbs.h	/^  double getMaxScore() const { return max_score_; }$/;"	f	class:hlda::GibbsState
-getMutableCorpus	gibbs.h	/^  Corpus* getMutableCorpus() { return &corpus_; }$/;"	f	class:hlda::GibbsState
-getSampleAlpha	gibbs.h	/^  int getSampleAlpha() const { return sample_alpha_; }$/;"	f	class:hlda::GibbsState
-getSampleEta	gibbs.h	/^  int getSampleEta() const { return sample_eta_; }$/;"	f	class:hlda::GibbsState
-getSampleGamma	gibbs.h	/^  int getSampleGamma() const { return sample_gamma_; }$/;"	f	class:hlda::GibbsState
-getScore	gibbs.h	/^  double getScore() const { return score_; }$/;"	f	class:hlda::GibbsState
-getShuffleLag	gibbs.h	/^  int getShuffleLag() const { return shuffle_lag_; }$/;"	f	class:hlda::GibbsState
-hlda	gibbs.h	/^namespace hlda {$/;"	n
-hyper_lag_	gibbs.h	/^  int hyper_lag_;$/;"	m	class:hlda::GibbsState
-incIteration	gibbs.h	/^  void incIteration(int val) { iteration_ += val; }$/;"	f	class:hlda::GibbsState
-iteration_	gibbs.h	/^  int iteration_;$/;"	m	class:hlda::GibbsState
-max_score_	gibbs.h	/^  double max_score_;$/;"	m	class:hlda::GibbsState
-sample_alpha_	gibbs.h	/^  int sample_alpha_;$/;"	m	class:hlda::GibbsState
-sample_eta_	gibbs.h	/^  int sample_eta_;$/;"	m	class:hlda::GibbsState
-sample_gamma_	gibbs.h	/^  int sample_gamma_;$/;"	m	class:hlda::GibbsState
-score_	gibbs.h	/^  double score_;$/;"	m	class:hlda::GibbsState
-setAlphaScore	gibbs.h	/^  void setAlphaScore(double alpha_score) { alpha_score_ = alpha_score; }$/;"	f	class:hlda::GibbsState
-setCorpus	gibbs.h	/^  void setCorpus(const Corpus& corpus) { corpus_ = corpus; }$/;"	f	class:hlda::GibbsState
-setEtaScore	gibbs.h	/^  void setEtaScore(double eta_score) { eta_score_ = eta_score; }$/;"	f	class:hlda::GibbsState
-setGammaScore	gibbs.h	/^  void setGammaScore(double gamma_score) { gamma_score_ = gamma_score; }$/;"	f	class:hlda::GibbsState
-setIteration	gibbs.h	/^  void setIteration(int iteration) { iteration_ = iteration; }$/;"	f	class:hlda::GibbsState
-setMaxScore	gibbs.h	/^  void setMaxScore(double max_score) { max_score_ = max_score; }$/;"	f	class:hlda::GibbsState
-setSampleAlpha	gibbs.h	/^  void setSampleAlpha(int sample_alpha) { sample_alpha_ = sample_alpha; }$/;"	f	class:hlda::GibbsState
-setSampleEta	gibbs.h	/^  void setSampleEta(int sample_eta) { sample_eta_ = sample_eta; }$/;"	f	class:hlda::GibbsState
-setScore	gibbs.h	/^  void setScore(double score) { score_ = score; }$/;"	f	class:hlda::GibbsState
-shuffle_lag_	gibbs.h	/^  int shuffle_lag_;$/;"	m	class:hlda::GibbsState
+GibbsSampler	gibbs.h	/^class GibbsSampler {$/;"	c	namespace:hdp
+GibbsState	gibbs.h	/^class GibbsState {$/;"	c	namespace:hdp
+alpha_score_	gibbs.h	/^  double alpha_score_;$/;"	m	class:hdp::GibbsState
+corpus_	gibbs.h	/^  Corpus corpus_;$/;"	m	class:hdp::GibbsState
+eta_score_	gibbs.h	/^  double eta_score_;$/;"	m	class:hdp::GibbsState
+gamma_score_	gibbs.h	/^  double gamma_score_;$/;"	m	class:hdp::GibbsState
+getAlphaScore	gibbs.h	/^  double getAlphaScore() const { return alpha_score_; }$/;"	f	class:hdp::GibbsState
+getEtaScore	gibbs.h	/^  double getEtaScore() const { return eta_score_; }$/;"	f	class:hdp::GibbsState
+getGammaScore	gibbs.h	/^  double getGammaScore() const { return gamma_score_; }$/;"	f	class:hdp::GibbsState
+getHyperLag	gibbs.h	/^  int getHyperLag() const { return hyper_lag_; }$/;"	f	class:hdp::GibbsState
+getIteration	gibbs.h	/^  int getIteration() const { return iteration_; }$/;"	f	class:hdp::GibbsState
+getMaxScore	gibbs.h	/^  double getMaxScore() const { return max_score_; }$/;"	f	class:hdp::GibbsState
+getMutableCorpus	gibbs.h	/^  Corpus* getMutableCorpus() { return &corpus_; }$/;"	f	class:hdp::GibbsState
+getSampleAlpha	gibbs.h	/^  int getSampleAlpha() const { return sample_alpha_; }$/;"	f	class:hdp::GibbsState
+getSampleEta	gibbs.h	/^  int getSampleEta() const { return sample_eta_; }$/;"	f	class:hdp::GibbsState
+getSampleGamma	gibbs.h	/^  int getSampleGamma() const { return sample_gamma_; }$/;"	f	class:hdp::GibbsState
+getScore	gibbs.h	/^  double getScore() const { return score_; }$/;"	f	class:hdp::GibbsState
+getShuffleLag	gibbs.h	/^  int getShuffleLag() const { return shuffle_lag_; }$/;"	f	class:hdp::GibbsState
+hdp	gibbs.h	/^namespace hdp {$/;"	n
+hyper_lag_	gibbs.h	/^  int hyper_lag_;$/;"	m	class:hdp::GibbsState
+incIteration	gibbs.h	/^  void incIteration(int val) { iteration_ += val; }$/;"	f	class:hdp::GibbsState
+iteration_	gibbs.h	/^  int iteration_;$/;"	m	class:hdp::GibbsState
+max_score_	gibbs.h	/^  double max_score_;$/;"	m	class:hdp::GibbsState
+sample_alpha_	gibbs.h	/^  int sample_alpha_;$/;"	m	class:hdp::GibbsState
+sample_eta_	gibbs.h	/^  int sample_eta_;$/;"	m	class:hdp::GibbsState
+sample_gamma_	gibbs.h	/^  int sample_gamma_;$/;"	m	class:hdp::GibbsState
+score_	gibbs.h	/^  double score_;$/;"	m	class:hdp::GibbsState
+setAlphaScore	gibbs.h	/^  void setAlphaScore(double alpha_score) { alpha_score_ = alpha_score; }$/;"	f	class:hdp::GibbsState
+setCorpus	gibbs.h	/^  void setCorpus(const Corpus& corpus) { corpus_ = corpus; }$/;"	f	class:hdp::GibbsState
+setEtaScore	gibbs.h	/^  void setEtaScore(double eta_score) { eta_score_ = eta_score; }$/;"	f	class:hdp::GibbsState
+setGammaScore	gibbs.h	/^  void setGammaScore(double gamma_score) { gamma_score_ = gamma_score; }$/;"	f	class:hdp::GibbsState
+setIteration	gibbs.h	/^  void setIteration(int iteration) { iteration_ = iteration; }$/;"	f	class:hdp::GibbsState
+setMaxScore	gibbs.h	/^  void setMaxScore(double max_score) { max_score_ = max_score; }$/;"	f	class:hdp::GibbsState
+setSampleAlpha	gibbs.h	/^  void setSampleAlpha(int sample_alpha) { sample_alpha_ = sample_alpha; }$/;"	f	class:hdp::GibbsState
+setSampleEta	gibbs.h	/^  void setSampleEta(int sample_eta) { sample_eta_ = sample_eta; }$/;"	f	class:hdp::GibbsState
+setSampleGamma	gibbs.h	/^  void setSampleGamma(int sample_gamma) { sample_gamma_ = sample_gamma; }$/;"	f	class:hdp::GibbsState
+setScore	gibbs.h	/^  void setScore(double score) { score_ = score; }$/;"	f	class:hdp::GibbsState
+shuffle_lag_	gibbs.h	/^  int shuffle_lag_;$/;"	m	class:hdp::GibbsState
 MAX_ITERATIONS	hdp_main.cc	/^#define MAX_ITERATIONS /;"	d	file:
 main	hdp_main.cc	/^int main(int argc, char** argv) {$/;"	f
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 main	test.cc	/^int main() {$/;"	f
-EtaScore	topic.cc	/^double AllTopicsUtils::EtaScore() {$/;"	f	class:AllTopicsUtils
+EtaScore	topic.cc	/^double AllTopicsUtils::EtaScore() {$/;"	f	class:hdp::AllTopicsUtils
 EtaScore	topic.cc	/^double TopicUtils::EtaScore(Topic* topic, double eta) {$/;"	f	class:hdp::TopicUtils
-GammaScore	topic.cc	/^double AllTopicsUtils::GammaScore(double gamma) {$/;"	f	class:AllTopicsUtils
-GetInstance	topic.cc	/^AllTopics::AllTopics& GetInstance() {$/;"	f	namespace:hdp
+GammaScore	topic.cc	/^double AllTopicsUtils::GammaScore(double gamma) {$/;"	f	class:hdp::AllTopicsUtils
+GetInstance	topic.cc	/^AllTopics& AllTopics::GetInstance() {$/;"	f	class:hdp::AllTopics
 LogGammaRatio	topic.cc	/^double TopicTableUtils::LogGammaRatio(Table* table,$/;"	f	class:hdp::TopicTableUtils
 Topic	topic.cc	/^Topic::Topic(int corpus_word_no)$/;"	f	class:hdp::Topic
 addNewTopic	topic.cc	/^void AllTopics::addNewTopic(int corpus_word_no) {$/;"	f	class:hdp::AllTopics
-compactTopics	topic.cc	/^void AllTOpics::compactTopics() {$/;"	f	class:hdp::AllTOpics
+compactTopics	topic.cc	/^void AllTopics::compactTopics() {$/;"	f	class:hdp::AllTopics
 getTopicWords	topic.cc	/^int Topic::getTopicWords() const {$/;"	f	class:hdp::Topic
 hdp	topic.cc	/^namespace hdp {$/;"	n	file:
 removeLastTopic	topic.cc	/^void AllTopics::removeLastTopic() {$/;"	f	class:hdp::AllTopics
@@ -180,17 +179,21 @@ getLgamWordEta	topic.h	/^	double getLgamWordEta(int word_id) const { return lgam
 getLogWordPr	topic.h	/^	double getLogWordPr(int word_id) const { return log_word_pr_[word_id]; }$/;"	f	class:hdp::Topic
 getMutableTopic	topic.h	/^	Topic* getMutableTopic(int i) {$/;"	f	class:hdp::AllTopics
 getTableCount	topic.h	/^	int getTableCount() const { return table_count_; }$/;"	f	class:hdp::Topic
+getTopicWordNo	topic.h	/^	int getTopicWordNo() const { return topic_word_no_; }$/;"	f	class:hdp::Topic
 getTopics	topic.h	/^	int getTopics() const { return topic_ptrs_.size(); }$/;"	f	class:hdp::AllTopics
 getWordCount	topic.h	/^	int getWordCount(int word_id) const { return word_counts_[word_id]; }$/;"	f	class:hdp::Topic
 hdp	topic.h	/^namespace hdp {$/;"	n
 incTableCount	topic.h	/^	void incTableCount(int val) { table_count_ += val; }$/;"	f	class:hdp::Topic
+incTopicWordNo	topic.h	/^	void incTopicWordNo(int val) { topic_word_no_ += val; }$/;"	f	class:hdp::Topic
 lgam_word_eta_	topic.h	/^	vector<double> lgam_word_eta_; $/;"	m	class:hdp::Topic
 log_word_pr_	topic.h	/^	vector<double> log_word_pr_;$/;"	m	class:hdp::Topic
 setCorpusWordNO	topic.h	/^	void setCorpusWordNO(int corpus_word_no) { corpus_word_no_ = corpus_word_no; }$/;"	f	class:hdp::Topic
 setEta	topic.h	/^	void setEta(const int& eta) { eta_ = eta; }$/;"	f	class:hdp::AllTopics
 setTableCount	topic.h	/^	void setTableCount(int table_count) { table_count = table_count_; }$/;"	f	class:hdp::Topic
+setTopicWordNo	topic.h	/^	void setTopicWordNo(int topic_word_no) { topic_word_no_ = topic_word_no; }$/;"	f	class:hdp::Topic
 table_count_	topic.h	/^	int table_count_;$/;"	m	class:hdp::Topic
 topic_ptrs_	topic.h	/^	vector<Topic*> topic_ptrs_;$/;"	m	class:hdp::AllTopics
+topic_word_no_	topic.h	/^	int topic_word_no_;$/;"	m	class:hdp::Topic
 word_counts_	topic.h	/^	vector<int> word_counts_;$/;"	m	class:hdp::Topic
 InitRandomNumberGen	utils.cc	/^void Utils::InitRandomNumberGen(long rng_seed) {$/;"	f	class:hdp::Utils
 LogSum	utils.cc	/^double Utils::LogSum(double log_a, double log_b) {$/;"	f	class:hdp::Utils
