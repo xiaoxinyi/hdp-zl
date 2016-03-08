@@ -36,6 +36,8 @@ private:
 	// Corpus word number - vocabulary size.
 	int corpus_word_no_;
 
+
+
 	// The count of tables pointing this topic.
 	int table_count_;
 

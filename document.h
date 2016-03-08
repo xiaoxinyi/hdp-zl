@@ -155,7 +155,8 @@ public:
 													 int permute_words,
 											     bool remove,
 											     double alpha,
-											     double gamma);
+											     double gamma,
+											     int corpus_word_no);
 
 	// Sample table for one word.
 	// Dirichlet process parameter,
@@ -165,7 +166,8 @@ public:
 																 Word* word,
 																 bool remove,
 																 double alpha,
-											    			 double gamma);
+											    			 double gamma, 
+											    			 int corpus_word_no);
 
 	// Sample topic for each table given a document.
 	static void SampleTopics(Document* document);

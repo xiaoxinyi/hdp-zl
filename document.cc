@@ -220,7 +220,8 @@ void DocumentUtils::SampleTables(Document* document,
 																 int permute_words,
 																 bool remove,
 																 double alpha,
-											    			 double gamma) {
+											    			 double gamma,
+											    			 int corpus_word_no) {
 	if (permute_words == 1) {
 		PermuteWords(document);
 	}
@@ -228,7 +229,7 @@ void DocumentUtils::SampleTables(Document* document,
 	int words = document->getWords();
 	for (int i = 0; i < words; i++) {
 		Word* word = document->getMutableWord(i);
-		SampleTableForWord(document, word, remove, alpha, gamma);
+		SampleTableForWord(document, word, remove, alpha, gamma, corpus_word_no);
 	}
 }
 
@@ -236,7 +237,8 @@ void DocumentUtils::SampleTableForWord(Document* document,
 																			 Word* word,
 																 			 bool remove,
 																 			 double alpha,
-											    			 			 double gamma) {
+											    			 			 double gamma,
+											    			 			 int corpus_word_no) {
 	if (remove) WordUtils::UpdateTableFromWord(word, -1);
 
 	int tables = document->getTables();
@@ -244,9 +246,9 @@ void DocumentUtils::SampleTableForWord(Document* document,
 
 	AllTopics& all_topics = AllTopics::GetInstance();
 	int topics = all_topics.getTopics();
-	assert(topics > 0);
+	assert(topics >= 0);
 
-	int corpus_word_no = all_topics.getMutableTopic(0)->getCorpusWordNo();
+	// int corpus_word_no = all_topics.getMutableTopic(0)->getCorpusWordNo();
 	int word_id = word->getId();
 
 	// Log_word_pr + log(table number) in each topic.

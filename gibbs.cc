@@ -69,7 +69,9 @@ void GibbsSampler::ReadGibbsInput(
   ifstream infile(filename_settings.c_str());
   char buf[BUF_SIZE];
 
-  int sample_eta, sample_alpha, sample_gamma;
+  int sample_eta = DEFAULT_SAMPLE_ETA, 
+  		sample_alpha = DEFUALT_SAMPLE_ALPHA, 
+  		sample_gamma = DEFAULT_SAMPLE_GAMMA;
   
   double alpha, gamma, eta;
 
@@ -117,6 +119,8 @@ void GibbsSampler::InitGibbsState(
   
   double alpha = corpus->getAlpha();
   double gamma = corpus->getGamma();
+
+  int corpus_word_no = corpus->getWordNo();
   
   // Permute documents in the corpus.
   CorpusUtils::PermuteDocuments(corpus);
@@ -125,8 +129,8 @@ void GibbsSampler::InitGibbsState(
     Document* document = corpus->getMutableDocument(i);
 
     // permute_words = 1, remove = false.
-    DocumentUtils::SampleTables(document, 1,
-																false, alpha, gamma);
+    DocumentUtils::SampleTables(document, 1, false, 
+    														alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
     DocumentUtils::SampleTopics(document, gamma);
@@ -199,12 +203,14 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
   double alpha = corpus->getAlpha();
   double gamma = corpus->getGamma();
 
+  int corpus_word_no = corpus->getWordNo();
+
   // Sample document path and word levels.
   for (int i = 0; i < corpus->getDocuments(); i++) {
     Document* document = corpus->getMutableDocument(i);
 
-    DocumentUtils::SampleTables(document, permute,
-																true, alpha, gamma);
+    DocumentUtils::SampleTables(document, permute, true,
+																alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
     DocumentUtils::SampleTopics(document, gamma);
