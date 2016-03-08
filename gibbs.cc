@@ -6,6 +6,7 @@
 #include <sstream>
 
 #include "gibbs.h"
+#include "document.h"
 
 #define REP_NO 100
 #define DEFAULT_HYPER_LAG 0
@@ -128,7 +129,7 @@ void GibbsSampler::InitGibbsState(
 																false, alpha, gamma);
     DocumentUtils::CompactTables(document);
 
-    DocumentUtils::SampleTopics(document);
+    DocumentUtils::SampleTopics(document, gamma);
 
     AllTopics::GetInstance().compactTopics();
 
@@ -206,7 +207,7 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
 																true, alpha, gamma);
     DocumentUtils::CompactTables(document);
 
-    DocumentUtils::SampleTopics(document);
+    DocumentUtils::SampleTopics(document, gamma);
 
     AllTopics::GetInstance().compactTopics();
   }

@@ -15,10 +15,6 @@ class Corpus {
   Corpus();
   Corpus(double gamma, double alpha);
 
-
-  Corpus(const Corpus& from);
-  Corpus& operator=(const Corpus& from);
-
   void setWordNo(int word_no) { word_no_ = word_no; }
   int getWordNo() const { return word_no_; }
 
