@@ -139,12 +139,14 @@ void TableUtils::SampleTopicForTable(Table* table,
 			log_pr[i] = TopicTableUtils::LogGammaRatio(table, topic,
 																								 word_ids, counts) +
 									log(topic->getTableCount() - 1);
-		}
-		Topic* new_topic = all_topics.getMutableTopic(topics);
-		log_pr[topics] = log(gamma) + TopicTableUtils::LogGammaRatio(table, new_topic,
-																															word_ids, counts);
-								
+		}					
 	}
+
+	Topic* new_topic = all_topics.getMutableTopic(topics);
+	log_pr[topics] = log(gamma) + 
+										TopicTableUtils::LogGammaRatio(
+											table, new_topic, word_ids, counts);
+			
 
 	int sample_topic = Utils::SampleFromLogPr(log_pr);
 	Topic* old_topic = table->getMutableTopic();
@@ -314,7 +316,7 @@ void DocumentUtils::SampleTableForWord(Document* document,
 		// Set topic for new table.
 		Topic* new_topic = all_topics.getMutableTopic(sample_topic);
 		new_table->setTopic(new_topic);
-		new_topic->incTableCount(1);
+		// new_topic->incTableCount(1);
 	} else {
 		// Table is not new created. 
 		// Set table for word.
