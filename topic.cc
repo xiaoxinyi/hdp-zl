@@ -4,6 +4,7 @@
 #include "utils.h"
 #include "topic.h"
 
+namespace hdp {
 // =======================================================================
 // Topic
 // =======================================================================
@@ -126,8 +127,8 @@ double TopicUtils::EtaScore(Topic* topic, double eta) {
 
 double TopicTableUtils::LogGammaRatio(Table* table,
 											 								Topic* topic,
-											 								vecotr<int>& word_ids,
-											 								vecotr<int>& counts) {
+											 								vector<int>& word_ids,
+											 								vector<int>& counts) {
 	double log_gamma_ratio = 0.0;
 	Topic* old_topic = table->getMutableTopic();
 
@@ -140,7 +141,7 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 	
 	if (old_topic == topic) {
 		log_gamma_ratio += gsl_sf_lngamma(corpus_word_no * eta + topic_words - table_words) -
-										 gsl_sf_lngamma(corpus_word_no * eta + topic_words)
+										 gsl_sf_lngamma(corpus_word_no * eta + topic_words);
 
 		for (int i = 0; i < (int)word_ids.size(); i++) {
 			int word_id = word_ids[i];
@@ -150,7 +151,7 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 		}
 	} else {
 		log_gamma_ratio += gsl_sf_lngamma(corpus_word_no * eta + topic_words) -
-										 gsl_sf_lngamma(corpus_word_no * eta + topic_words + table_words)
+										 gsl_sf_lngamma(corpus_word_no * eta + topic_words + table_words);
 
 		for (int i = 0; i < (int)word_ids.size(); i++) {
 			int word_id = word_ids[i];
@@ -163,6 +164,7 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 	return log_gamma_ratio;
 }
 
+}  // namespace hdp
 
 // =======================================================================
 // AllTopicsUtils 

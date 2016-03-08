@@ -9,8 +9,6 @@ using namespace std;
 
 namespace hdp {
 
-class AllTopics;
-
 // The Topic contains the counts of each word,
 // the number of tables, corpus word number,
 // lgam_word_eta - ln(gamma(w + eta)).
@@ -40,7 +38,7 @@ private:
 	int table_count_;
 
 	// Counts of each word assigned to this topic.
-	vecotr<int> word_counts_;
+	vector<int> word_counts_;
 
 	// Precomputed ln(gamma(w + eta)) for each word.
 	vector<double> lgam_word_eta_; 
@@ -109,8 +107,8 @@ public:
 	// counts - corresponding counts.
 	static double LogGammaRatio(Table* table,
 											 				Topic* topic,
-											 				vecotr<int>& word_ids,
-											 				vecotr<int>& counts);
+											 				vector<int>& word_ids,
+											 				vector<int>& counts);
 };
 
 // This class provides functionality for computing

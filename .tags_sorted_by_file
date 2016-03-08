@@ -4,10 +4,11 @@
 !_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
 !_TAG_PROGRAM_NAME	Exuberant Ctags	//
 COMPILER	Makefile	/^COMPILER = g++$/;"	m
-FLAGS	Makefile	/^FLAGS = -g -Wall  -I\/usr\/local\/Cellar\/gsl\/1.16\/include$/;"	m
+FLAGS	Makefile	/^FLAGS = -g -Wall  -I\/usr\/local\/Cellar\/gsl\/1.16\/include -std=c++11$/;"	m
 LIBS	Makefile	/^LIBS = -lgsl -lgslcblas -L\/usr\/local\/Cellar\/gsl\/1.16\/lib$/;"	m
-OBJS	Makefile	/^OBJS = utils.o topic.o tree.o document.o corpus.o gibbs.o hlda_main.o$/;"	m
+OBJS	Makefile	/^OBJS = utils.o topic.o document.o corpus.o gibbs.o hdp_main.o$/;"	m
 SOURCE	Makefile	/^SOURCE = $(OBJS:.o=.cc)$/;"	m
+AlphaScore	corpus.cc	/^double CorpusUtils::AlphaScore(Corpus* corpus) {$/;"	f	class:hdp::CorpusUtils
 BUF_SIZE	corpus.cc	/^#define BUF_SIZE /;"	d	file:
 Corpus	corpus.cc	/^Corpus::Corpus()$/;"	f	class:hdp::Corpus
 Corpus	corpus.cc	/^Corpus::Corpus(double gamma, double alpha)$/;"	f	class:hdp::Corpus
@@ -43,6 +44,7 @@ PermuteWords	document.cc	/^void DocumentUtils::PermuteWords(Document* document) 
 SampleTableForWord	document.cc	/^void DocumentUtils::SampleTableForWord(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTables	document.cc	/^void DocumentUtils::SampleTables(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTopicForTable	document.cc	/^void TableUtils::SampleTopicForTable(Table* table, $/;"	f	class:hdp::TableUtils
+SampleTopics	document.cc	/^void DocumentUtils::SampleTopics(Document* document) {$/;"	f	class:hdp::DocumentUtils
 Table	document.cc	/^Table::Table()$/;"	f	class:hdp::Table
 Table	document.cc	/^Table::Table(int word_count)$/;"	f	class:hdp::Table
 UpdateTableFromWord	document.cc	/^void WordUtils::UpdateTableFromWord(Word* word,$/;"	f	class:hdp::WordUtils
@@ -91,22 +93,78 @@ tables_	documnet.h	/^	vector<Table*> tables_;  $/;"	m	class:hdp::Document
 topic_	documnet.h	/^	Topic* topic_;$/;"	m	class:hdp::Table
 word_count_	documnet.h	/^	int word_count_;$/;"	m	class:hdp::Table
 words_	documnet.h	/^	vector<Word> words_;$/;"	m	class:hdp::Document
+BUF_SIZE	gibbs.cc	/^#define BUF_SIZE /;"	d	file:
+DEFAULT_HYPER_LAG	gibbs.cc	/^#define DEFAULT_HYPER_LAG /;"	d	file:
+DEFAULT_SAMPLE_ETA	gibbs.cc	/^#define DEFAULT_SAMPLE_ETA /;"	d	file:
+DEFAULT_SAMPLE_GAMMA	gibbs.cc	/^#define DEFAULT_SAMPLE_GAMMA /;"	d	file:
+DEFAULT_SHUFFLE_LAG	gibbs.cc	/^#define DEFAULT_SHUFFLE_LAG /;"	d	file:
+DEFUALT_SAMPLE_ALPHA	gibbs.cc	/^#define DEFUALT_SAMPLE_ALPHA /;"	d	file:
+GibbsState	gibbs.cc	/^GibbsState::GibbsState()$/;"	f	class:hdp::GibbsState
+InitGibbsState	gibbs.cc	/^void GibbsSampler::InitGibbsState($/;"	f	class:hdp::GibbsSampler
+InitGibbsStateRep	gibbs.cc	/^GibbsState* GibbsSampler::InitGibbsStateRep($/;"	f	class:hdp::GibbsSampler
+IterateGibbsState	gibbs.cc	/^void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {$/;"	f	class:hdp::GibbsSampler
+REP_NO	gibbs.cc	/^#define REP_NO /;"	d	file:
+ReadGibbsInput	gibbs.cc	/^void GibbsSampler::ReadGibbsInput($/;"	f	class:hdp::GibbsSampler
+computeGibbsScore	gibbs.cc	/^double GibbsState::computeGibbsScore() {$/;"	f	class:hdp::GibbsState
+hdp	gibbs.cc	/^namespace hdp {$/;"	n	file:
+GIBBS_H_	gibbs.h	/^#define GIBBS_H_$/;"	d
+GibbsSampler	gibbs.h	/^class GibbsSampler {$/;"	c	namespace:hlda
+GibbsState	gibbs.h	/^class GibbsState {$/;"	c	namespace:hlda
+alpha_score_	gibbs.h	/^  double alpha_score_;$/;"	m	class:hlda::GibbsState
+corpus_	gibbs.h	/^  Corpus corpus_;$/;"	m	class:hlda::GibbsState
+eta_score_	gibbs.h	/^  double eta_score_;$/;"	m	class:hlda::GibbsState
+gamma_score_	gibbs.h	/^  double gamma_score_;$/;"	m	class:hlda::GibbsState
+getAlphaScore	gibbs.h	/^  double getAlphaScore() const { return alpha_score_; }$/;"	f	class:hlda::GibbsState
+getEtaScore	gibbs.h	/^  double getEtaScore() const { return eta_score_; }$/;"	f	class:hlda::GibbsState
+getGammaScore	gibbs.h	/^  double getGammaScore() const { return gamma_score_; }$/;"	f	class:hlda::GibbsState
+getHyperLag	gibbs.h	/^  int getHyperLag() const { return hyper_lag_; }$/;"	f	class:hlda::GibbsState
+getIteration	gibbs.h	/^  int getIteration() const { return iteration_; }$/;"	f	class:hlda::GibbsState
+getLevelLag	gibbs.h	/^  int getLevelLag() const { return level_lag_; }$/;"	f	class:hlda::GibbsState
+getMaxScore	gibbs.h	/^  double getMaxScore() const { return max_score_; }$/;"	f	class:hlda::GibbsState
+getMutableCorpus	gibbs.h	/^  Corpus* getMutableCorpus() { return &corpus_; }$/;"	f	class:hlda::GibbsState
+getSampleAlpha	gibbs.h	/^  int getSampleAlpha() const { return sample_alpha_; }$/;"	f	class:hlda::GibbsState
+getSampleEta	gibbs.h	/^  int getSampleEta() const { return sample_eta_; }$/;"	f	class:hlda::GibbsState
+getSampleGamma	gibbs.h	/^  int getSampleGamma() const { return sample_gamma_; }$/;"	f	class:hlda::GibbsState
+getScore	gibbs.h	/^  double getScore() const { return score_; }$/;"	f	class:hlda::GibbsState
+getShuffleLag	gibbs.h	/^  int getShuffleLag() const { return shuffle_lag_; }$/;"	f	class:hlda::GibbsState
+hlda	gibbs.h	/^namespace hlda {$/;"	n
+hyper_lag_	gibbs.h	/^  int hyper_lag_;$/;"	m	class:hlda::GibbsState
+incIteration	gibbs.h	/^  void incIteration(int val) { iteration_ += val; }$/;"	f	class:hlda::GibbsState
+iteration_	gibbs.h	/^  int iteration_;$/;"	m	class:hlda::GibbsState
+max_score_	gibbs.h	/^  double max_score_;$/;"	m	class:hlda::GibbsState
+sample_alpha_	gibbs.h	/^  int sample_alpha_;$/;"	m	class:hlda::GibbsState
+sample_eta_	gibbs.h	/^  int sample_eta_;$/;"	m	class:hlda::GibbsState
+sample_gamma_	gibbs.h	/^  int sample_gamma_;$/;"	m	class:hlda::GibbsState
+score_	gibbs.h	/^  double score_;$/;"	m	class:hlda::GibbsState
+setAlphaScore	gibbs.h	/^  void setAlphaScore(double alpha_score) { alpha_score_ = alpha_score; }$/;"	f	class:hlda::GibbsState
+setCorpus	gibbs.h	/^  void setCorpus(const Corpus& corpus) { corpus_ = corpus; }$/;"	f	class:hlda::GibbsState
+setEtaScore	gibbs.h	/^  void setEtaScore(double eta_score) { eta_score_ = eta_score; }$/;"	f	class:hlda::GibbsState
+setGammaScore	gibbs.h	/^  void setGammaScore(double gamma_score) { gamma_score_ = gamma_score; }$/;"	f	class:hlda::GibbsState
+setIteration	gibbs.h	/^  void setIteration(int iteration) { iteration_ = iteration; }$/;"	f	class:hlda::GibbsState
+setMaxScore	gibbs.h	/^  void setMaxScore(double max_score) { max_score_ = max_score; }$/;"	f	class:hlda::GibbsState
+setSampleAlpha	gibbs.h	/^  void setSampleAlpha(int sample_alpha) { sample_alpha_ = sample_alpha; }$/;"	f	class:hlda::GibbsState
+setSampleEta	gibbs.h	/^  void setSampleEta(int sample_eta) { sample_eta_ = sample_eta; }$/;"	f	class:hlda::GibbsState
+setScore	gibbs.h	/^  void setScore(double score) { score_ = score; }$/;"	f	class:hlda::GibbsState
+shuffle_lag_	gibbs.h	/^  int shuffle_lag_;$/;"	m	class:hlda::GibbsState
+MAX_ITERATIONS	hdp_main.cc	/^#define MAX_ITERATIONS /;"	d	file:
+main	hdp_main.cc	/^int main(int argc, char** argv) {$/;"	f
 !_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
 main	test.cc	/^int main() {$/;"	f
-EtaScore	topic.cc	/^double TopicUtils::EtaScore(Topic* topic, double eta) {$/;"	f	class:TopicUtils
-EtaScores	topic.cc	/^double AllTopicsUtils::EtaScores() {$/;"	f	class:AllTopicsUtils
+EtaScore	topic.cc	/^double AllTopicsUtils::EtaScore() {$/;"	f	class:AllTopicsUtils
+EtaScore	topic.cc	/^double TopicUtils::EtaScore(Topic* topic, double eta) {$/;"	f	class:hdp::TopicUtils
 GammaScore	topic.cc	/^double AllTopicsUtils::GammaScore(double gamma) {$/;"	f	class:AllTopicsUtils
-GetInstance	topic.cc	/^AllTopics::AllTopics& GetInstance() {$/;"	f
-LogGammaRatio	topic.cc	/^double TopicTableUtils::LogGammaRatio(Table* table,$/;"	f	class:TopicTableUtils
-Topic	topic.cc	/^Topic::Topic(int corpus_word_no)$/;"	f	class:Topic
-addNewTopic	topic.cc	/^void AllTopics::addNewTopic(int corpus_word_no) {$/;"	f	class:AllTopics
-compactTopics	topic.cc	/^void AllTOpics::compactTopics() {$/;"	f	class:AllTOpics
-getTopicWords	topic.cc	/^int Topic::getTopicWords() const {$/;"	f	class:Topic
-removeLastTopic	topic.cc	/^void AllTopics::removeLastTopic() {$/;"	f	class:AllTopics
-removeTopic	topic.cc	/^void AllTopics::removeTopic(Topic* topic) {$/;"	f	class:AllTopics
-removeTopic	topic.cc	/^void AllTopics::removeTopic(int pos) {$/;"	f	class:AllTopics
-updateWordCounts	topic.cc	/^void Topic::updateWordCounts(int word_id, int update) {$/;"	f	class:Topic
-~AllTopics	topic.cc	/^AllTopics::~AllTopics() {$/;"	f	class:AllTopics
+GetInstance	topic.cc	/^AllTopics::AllTopics& GetInstance() {$/;"	f	namespace:hdp
+LogGammaRatio	topic.cc	/^double TopicTableUtils::LogGammaRatio(Table* table,$/;"	f	class:hdp::TopicTableUtils
+Topic	topic.cc	/^Topic::Topic(int corpus_word_no)$/;"	f	class:hdp::Topic
+addNewTopic	topic.cc	/^void AllTopics::addNewTopic(int corpus_word_no) {$/;"	f	class:hdp::AllTopics
+compactTopics	topic.cc	/^void AllTOpics::compactTopics() {$/;"	f	class:hdp::AllTOpics
+getTopicWords	topic.cc	/^int Topic::getTopicWords() const {$/;"	f	class:hdp::Topic
+hdp	topic.cc	/^namespace hdp {$/;"	n	file:
+removeLastTopic	topic.cc	/^void AllTopics::removeLastTopic() {$/;"	f	class:hdp::AllTopics
+removeTopic	topic.cc	/^void AllTopics::removeTopic(Topic* topic) {$/;"	f	class:hdp::AllTopics
+removeTopic	topic.cc	/^void AllTopics::removeTopic(int pos) {$/;"	f	class:hdp::AllTopics
+updateWordCounts	topic.cc	/^void Topic::updateWordCounts(int word_id, int update) {$/;"	f	class:hdp::Topic
+~AllTopics	topic.cc	/^AllTopics::~AllTopics() {$/;"	f	class:hdp::AllTopics
 AllTopics	topic.h	/^	AllTopics() { }$/;"	f	class:hdp::AllTopics
 AllTopics	topic.h	/^class AllTopics {$/;"	c	namespace:hdp
 AllTopicsUtils	topic.h	/^class AllTopicsUtils {$/;"	c	namespace:hdp
@@ -133,7 +191,7 @@ setEta	topic.h	/^	void setEta(const int& eta) { eta_ = eta; }$/;"	f	class:hdp::A
 setTableCount	topic.h	/^	void setTableCount(int table_count) { table_count = table_count_; }$/;"	f	class:hdp::Topic
 table_count_	topic.h	/^	int table_count_;$/;"	m	class:hdp::Topic
 topic_ptrs_	topic.h	/^	vector<Topic*> topic_ptrs_;$/;"	m	class:hdp::AllTopics
-word_counts_	topic.h	/^	vecotr<int> word_counts_;$/;"	m	class:hdp::Topic
+word_counts_	topic.h	/^	vector<int> word_counts_;$/;"	m	class:hdp::Topic
 InitRandomNumberGen	utils.cc	/^void Utils::InitRandomNumberGen(long rng_seed) {$/;"	f	class:hdp::Utils
 LogSum	utils.cc	/^double Utils::LogSum(double log_a, double log_b) {$/;"	f	class:hdp::Utils
 RANDNUMGEN	utils.cc	/^gsl_rng* Utils::RANDNUMGEN = NULL;$/;"	m	class:hdp::Utils	file:
