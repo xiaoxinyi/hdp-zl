@@ -56,7 +56,7 @@ AllTopics::~AllTopics() {
 	}
 }
 
-AllTopics::AllTopics& GetInstance() {
+AllTopics& AllTopics::GetInstance() {
 	static AllTopics instance;
 	return instance;
 }
@@ -89,7 +89,7 @@ void AllTopics::removeLastTopic() {
 	topic_ptrs_.resize(size - 1);
 }
 
-void AllTOpics::compactTopics() {
+void AllTopics::compactTopics() {
 	int size = topic_ptrs_.size();
 	for (int i = size - 1; i >=0; --i) {
 		if (topic_ptrs_[i]->getTableCount() == 0) {
@@ -164,7 +164,6 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 	return log_gamma_ratio;
 }
 
-}  // namespace hdp
 
 // =======================================================================
 // AllTopicsUtils 
@@ -177,7 +176,7 @@ double AllTopicsUtils::GammaScore(double gamma) {
 	int table_total = 0;
 
 	for (int i = 0; i < topics; i++) {
-		Topics* topic = all_topics.getMutableTopic(i);
+		Topic* topic = all_topics.getMutableTopic(i);
 		int tables = topic->getTableCount();
 		score += gsl_sf_lngamma(tables);
 		table_total += tables; 
@@ -202,3 +201,4 @@ double AllTopicsUtils::EtaScore() {
 	return score;
 }
 
+}  // namespace hdp

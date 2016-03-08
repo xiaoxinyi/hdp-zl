@@ -4,6 +4,8 @@
 #include <vector>
 #include <gsl/gsl_sf.h>
 
+#include "document.h"
+
 using namespace std;
 
 
