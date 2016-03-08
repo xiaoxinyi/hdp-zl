@@ -185,6 +185,8 @@ double AllTopicsUtils::GammaScore(double gamma) {
 	score += topics * log(gamma) +
 					 gsl_sf_lngamma(gamma) - 
 					 gsl_sf_lngamma(table_total + gamma);
+
+	return score;
 }
 
 double AllTopicsUtils::EtaScore() {

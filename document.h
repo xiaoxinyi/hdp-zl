@@ -4,13 +4,14 @@
 #include <vector>
 #include <unordered_map>
 
-#include "topic.h"
+
 
 using namespace std;
 
 namespace hdp {
 
 class Table; 
+class Topic;
 
 // Word has a id, a table assignment
 class Word {
@@ -23,8 +24,6 @@ public:
 
 	Table* getMutableTable() { return table_; }
 	void setTable(Table* table) { table_ = table; }
-
-
  
 private:
 	// Word id.
@@ -50,19 +49,19 @@ static void UpdateTableFromWord(Word* word, int update);
 class Table {
 public:
 	Table();
-	Table(word_count);
+	Table(int word_count);
 
 	int getWordCount() const { return word_count_; }
 	void setWordCount(const int& word_count) { word_count_ = word_count; }
 	void incWordCount(int val) { word_count_ += val; }
 
-	Topic* getMuableTopic() { return topic; }
+	Topic* getMutableTopic() { return topic_; }
 	void setTopic(Topic* topic) { topic_ = topic; }
 
 	int getCountById(int word_id);
 	void updateMapWordCount(int word_id, int update);
 
-	unordered_map<int, int>& getMapWordCount() const { return map_word_count_; }
+	unordered_map<int, int>& getMapWordCount() { return map_word_count_; }
 private:
 	// Number of words.
 	int word_count_;
@@ -115,7 +114,7 @@ public:
 
 	void addWord(int id) { words_.push_back(Word(id)); }
 	void addWord(const Word& word) { words_.push_back(word); }
-	Word* getMutableWord(int i) { reutrn &(words_[i]); }
+	Word* getMutableWord(int i) { return &(words_[i]); }
 	void setWords(const vector<Word>& words) {
 		words_ = words; 
 	}
