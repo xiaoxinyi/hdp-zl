@@ -115,7 +115,7 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 }
 
 void TableUtils::SampleTopicForTable(Table* table, 
-																		 double gamma，
+																		 double gamma,
 																		 bool remove) {
 	AllTopics& all_topics = AllTopics::GetInstance();
 	int topics = all_topics.getTopics();
@@ -326,11 +326,11 @@ void DocumentUtils::SampleTableForWord(Document* document,
 	WordUtils::UpdateTableFromWord(word, 1);
 }
 
-void DocumentUtils::SampleTopics(Document* document, double gamma) {
+void DocumentUtils::SampleTopics(Document* document, double gamma, bool remove) {
 	int tables = document->getTables();
 	for (int i = 0; i < tables; i++) {
 		Table* table = document->getMutableTable(i);
-		TableUtils::SampleTopicForTable(table, gamma);
+		TableUtils::SampleTopicForTable(table, gamma, remove);
 	}
 }
 
