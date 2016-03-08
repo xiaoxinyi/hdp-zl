@@ -7,7 +7,7 @@
 #include "topic.h"
 #include "utils.h"
 
-namespace hlda {
+namespace hdp {
 
 // The Gibbs state of the HLDA implementation.
 // Each Gibbs state has a corpus and
@@ -16,10 +16,6 @@ namespace hlda {
 class GibbsState {
  public:
   GibbsState();
-  ~GibbsState();
-
-  GibbsState(const GibbsState& from);
-  GibbsState& operator=(const GibbsState& from);
 
   // Computes the Gibbs score, which is a perplexity score for
   // the model.
@@ -46,6 +42,7 @@ class GibbsState {
 
   void setSampleEta(int sample_eta) { sample_eta_ = sample_eta; }
   void setSampleAlpha(int sample_alpha) { sample_alpha_ = sample_alpha; }
+  void setSampleGamma(int sample_gamma) { sample_gamma_ = sample_gamma; }
 
   void setCorpus(const Corpus& corpus) { corpus_ = corpus; }
   Corpus* getMutableCorpus() { return &corpus_; }
@@ -54,7 +51,6 @@ class GibbsState {
   void setIteration(int iteration) { iteration_ = iteration; }
   void incIteration(int val) { iteration_ += val; }
 
-  int getLevelLag() const { return level_lag_; }
   int getShuffleLag() const { return shuffle_lag_; }
   int getHyperLag() const { return hyper_lag_; }
   int getSampleEta() const { return sample_eta_; }

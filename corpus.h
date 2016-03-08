@@ -33,7 +33,7 @@ class Corpus {
 
   int getWordTotal() const { return word_total_; }
   void setWordTotal(int word_total) { word_total_ = word_total; }
-  
+
   void setGamma(int gamma) { gamma_ = gamma; }
   int getGamma() const { return gamma_; }
 
@@ -64,12 +64,14 @@ class CorpusUtils {
   // Read corpus from file.
   static void ReadCorpus(
       const std::string& filename,
-      Corpus* corpus,
-      int depth);
+      Corpus* corpus);
 
 
   // Permute the documents in the corpus.
   static void PermuteDocuments(Corpus* corpus);
+
+  // Compute Alpha score.
+  static double AlphaScore(Corpus* corpus);
 };
 
 }  // namespace hdp

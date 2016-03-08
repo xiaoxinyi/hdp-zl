@@ -67,7 +67,7 @@ void CorpusUtils::ReadCorpus(
     istringstream s_line(buf);
     // Consider each line at a time.
     int word_count_pos = 0;
-    Document document(doc_no, depth);
+    Document document(doc_no);
     while (s_line.getline(buf, BUF_SIZE, ' ')) {
       if (word_count_pos == 0) {
         words = atoi(buf);

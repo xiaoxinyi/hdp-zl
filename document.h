@@ -62,6 +62,7 @@ public:
 	void updateMapWordCount(int word_id, int update);
 
 	unordered_map<int, int>& getMapWordCount() { return map_word_count_; }
+
 private:
 	// Number of words.
 	int word_count_;
@@ -99,7 +100,7 @@ static void UpdateTopicFromTable(Table* table,
 													 			 int update);
 
 // Sample a topic for a table.
-static void SampleTopicForTable(Table* table);
+static void SampleTopicForTable(Table* table, double gamma);
 };
 
 // The Document contains an id, a number of words.
@@ -178,6 +179,9 @@ public:
 
 	// Permute words in the document.
 	static void PermuteWords(Document* document);
+
+	// Sample Topics for all tables given a document.
+	static void SampleTopics(Document* document, double gamma); 
 };
 
 

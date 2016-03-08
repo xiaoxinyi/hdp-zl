@@ -40,8 +40,8 @@ GibbsState::GibbsState()
 double GibbsState::computeGibbsScore() {
   // Compute the Alpha, Eta and Gamma scores.
   alpha_score_ = CorpusUtils::AlphaScore(&corpus_);
-  eta_score_ = AllTopicUtils::EtaScore();
-  gamma_score_ = AllTopicUtils::GammaScore(gamma_);
+  eta_score_ = AllTopicsUtils::EtaScore();
+  gamma_score_ = AllTopicsUtils::GammaScore(corpus_.getGamma());
   score_ = alpha_score_ + eta_score_ + gamma_score_;
   cout << "Alpha_score: " << alpha_score_ << endl;
   cout << "Eta_score: " << eta_score_ << endl;
@@ -68,7 +68,7 @@ void GibbsSampler::ReadGibbsInput(
   ifstream infile(filename_settings.c_str());
   char buf[BUF_SIZE];
 
-  int depth, sample_eta, sample_alpha, sample_gamma;
+  int sample_eta, sample_alpha, sample_gamma;
   
   double alpha, gamma, eta;
 
@@ -116,8 +116,7 @@ void GibbsSampler::InitGibbsState(
   
   double alpha = corpus->getAlpha();
   double gamma = corpus->getGamma();
-  double eta = corpus->getEta();
-
+  
   // Permute documents in the corpus.
   CorpusUtils::PermuteDocuments(corpus);
 
@@ -195,6 +194,9 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
   if (permute == 1) {
     CorpusUtils::PermuteDocuments(corpus);
   }
+
+  double alpha = corpus->getAlpha();
+  double gamma = corpus->getGamma();
 
   // Sample document path and word levels.
   for (int i = 0; i < corpus->getDocuments(); i++) {

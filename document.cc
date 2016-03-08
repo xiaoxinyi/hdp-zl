@@ -3,6 +3,7 @@
 
 #include "document.h"
 #include "utils.h"
+#include "topic.h"
 
 namespace hdp {
 
@@ -28,7 +29,7 @@ void WordUtils::UpdateTableFromWord(Word* word,
 	table->updateMapWordCount(word->getId(), update);
 	
 
-	TableUtils::UpdateTopic(table, word->getId(), update);
+	TableUtils::UpdateTopicFromTable(table, word->getId(), update);
 }
 
 // =======================================================================
@@ -49,16 +50,16 @@ Table::Table(int word_count)
 
 int Table::getCountById(int word_id) {
 	auto it = map_word_count_.find(word_id);
-	if (it == word_id.end()) {
+	if (it == map_word_count_.end()) {
 		return 0;
 	} else {
 		return map_word_count_[word_id];
 	}
 }
 
-void updateMapWordCount(int word_id, int update) {
+void Table::updateMapWordCount(int word_id, int update) {
 	auto it = map_word_count_.find(word_id);
-	if (it == word_id.end()) {
+	if (it == map_word_count_.end()) {
 		map_word_count_[word_id] = update;
 	} else {
 		map_word_count_[word_id] += update;
@@ -85,12 +86,12 @@ void TableUtils::GetWordsAndCounts(Table* table,
 	counts.reserve(size);
 
 	for (auto p : m) {
-		word_ids.push(p.first);
-		counts.push(p.second);
+		word_ids.push_back(p.first);
+		counts.push_back(p.second);
 	}
 }
 
-void TableUtils::UpdateTopic(Table* table,
+void TableUtils::UpdateTopicFromTable(Table* table,
 														int word_id,
 														int update) {
 	Topic* topic = table->getMutableTopic();
@@ -106,10 +107,10 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 
 	for (int i = 0; i < size; i++) {
 		int word_id = word_ids[i];
-		UpdateTopic(table, word_id, update * counts[word_id]);
+		UpdateTopicFromTable(table, word_id, update * counts[word_id]);
 	}
 
-	table->GetaMutableTopic()->incTableCount(update);
+	table->getMutableTopic()->incTableCount(update);
 }
 
 void TableUtils::SampleTopicForTable(Table* table, 
@@ -122,7 +123,7 @@ void TableUtils::SampleTopicForTable(Table* table,
 	TableUtils::GetWordsAndCounts(table, word_ids, counts);
 	
 	assert(topics >= 1);
-	int corpus_word_no = all_topics.getMutableTopic[0]->getCorpusWordNo();
+	int corpus_word_no = all_topics.getMutableTopic(0)->getCorpusWordNo();
 	all_topics.addNewTopic(corpus_word_no);
 
 	vector<double> log_pr(topics + 1, 0.0);
@@ -133,12 +134,12 @@ void TableUtils::SampleTopicForTable(Table* table,
 																								 word_ids, counts) +
 									log(topic->getTableCount());
 		} else {
-			log_pr[i] = TopicTableUtils::LogGammaRatio(table, topic
+			log_pr[i] = TopicTableUtils::LogGammaRatio(table, topic,
 																								 word_ids, counts) +
 									log(topic->getTableCount() - 1);
 		}
 		Topic* new_topic = all_topics.getMutableTopic(topics);
-		log[topics] = log(gamma) + TopicTableUtils::LogGammaRatio(table, new_topic
+		log_pr[topics] = log(gamma) + TopicTableUtils::LogGammaRatio(table, new_topic,
 																															word_ids, counts);
 								
 	}
@@ -168,13 +169,13 @@ Document::Document(int id)
 Document::~Document() {
 	int size = getTables();
 	for (int i = 0; i < size; i++) {
-		if (tables_ != NULL) {
+		if (tables_[i] != NULL) {
 			delete tables_[i];			
 		}
 	}
 }
 
-void Table::removeTable(int pos) {
+void Document::removeTable(int pos) {
 	Table* table = tables_[pos];
 	assert(table->getWordCount() == 0);
 	assert(table->getMapWordCount().size() == 0);
@@ -184,7 +185,7 @@ void Table::removeTable(int pos) {
 	auto it = tables_.begin() + pos;
 	delete *it;
 	*it = NULL;
-	tables_.erase(it)
+	tables_.erase(it);
 }
 
 // =======================================================================
@@ -209,7 +210,7 @@ double DocumentUtils::AlphaScore(Document* document,
 void DocumentUtils::CompactTables(Document* document) {
 	int tables = document->getTables();
 	for (int i = tables - 1; i >=0 ; --i) {
-		if (document->getMutableTable(i)->getWords() == 0) {
+		if (document->getMutableTable(i)->getWordCount() == 0) {
 			document->removeTable(i);	
 		}	
 	}
@@ -245,7 +246,7 @@ void DocumentUtils::SampleTableForWord(Document* document,
 	int topics = all_topics.getTopics();
 	assert(topics > 0);
 
-	int corpus_word_no = all_topics.getMutableTopic(0).getCorpusWordNo();
+	int corpus_word_no = all_topics.getMutableTopic(0)->getCorpusWordNo();
 	int word_id = word->getId();
 
 	// Log_word_pr + log(table number) in each topic.
@@ -261,22 +262,22 @@ void DocumentUtils::SampleTableForWord(Document* document,
 	int total_tables = 0;
 	unordered_map<Topic*, int> topic_to_k;
 
-	for (int k = 0; k < topics; i++) {
+	for (int k = 0; k < topics; k++) {
 		Topic* topic = all_topics.getMutableTopic(k);
-		topic_to_k[topic*] = k;
+		topic_to_k[topic] = k;
 		f[k] = topic->getLogWordPr(word_id);
 		int table_count = topic->getTableCount();
 		total_tables += table_count;
 		log_pr_topic[k] = f[k] + log(table_count);
 		f_new = Utils::LogSum(f_new, 
-													f[k] + log(table_count)));
+													f[k] + log(table_count));
 	}
 	f_new = f_new - log(total_tables + gamma);
 	f[topics] = f_new;
 
 	for (int t = 0; t < tables; t++) {
 		Table* table = document->getMutableTable(t);
-		int table_word_count = table.getWordCount();
+		int table_word_count = table->getWordCount();
 		double log_word_count = log(table_word_count);
 	
 		Topic* topic = table->getMutableTopic();
@@ -316,11 +317,11 @@ void DocumentUtils::SampleTableForWord(Document* document,
 	WordUtils::UpdateTableFromWord(word, 1);
 }
 
-void DocumentUtils::SampleTopics(Document* document) {
+void DocumentUtils::SampleTopics(Document* document, double gamma) {
 	int tables = document->getTables();
 	for (int i = 0; i < tables; i++) {
 		Table* table = document->getMutableTable(i);
-		TableUtils::SampleTopicForTable(table);
+		TableUtils::SampleTopicForTable(table, gamma);
 	}
 }
 
