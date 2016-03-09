@@ -1,6 +1,8 @@
 #include <math.h>
 #include <assert.h>
 
+#include <iostream>
+
 #include "document.h"
 #include "utils.h"
 #include "topic.h"
@@ -114,7 +116,7 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 	
 	int size = word_ids.size();
 	Topic* topic = table->getMutableTopic();
-	topic->incTableCount(-1);
+	topic->incTableCount(update);
 
 	for (int i = 0; i < size; i++) {
 		int word_id = word_ids[i];
@@ -182,7 +184,7 @@ void TableUtils::PrintTableInfo(Table* table) {
 	Topic* topic = table->getMutableTopic();
 	cout << "correspond topic address : " << topic << endl;
 
-	word_count = table->getWordCount();
+	int word_count = table->getWordCount();
 	vector<int> word_ids;
 	vector<int> counts;
 
@@ -218,9 +220,9 @@ void Document::removeTable(int pos) {
 	Table* table = tables_[pos];
 	assert(table->getWordCount() == 0);
 	assert(table->getMapWordCount().size() == 0);
-	Topic* topic = table->getMutableTopic();
-	topic->incTableCount(-1);
-	topic = NULL;
+	// Topic* topic = table->getMutableTopic();
+	// topic->incTableCount(-1);
+	// topic = NULL;
 	auto it = tables_.begin() + pos;
 	delete *it;
 	*it = NULL;
@@ -389,7 +391,7 @@ void DocumentUtils::PermuteWords(Document* document) {
 }
 
 void DocumentUtils::PrintDocumentInfo(Document* document) {
-	cout << "document id : " << document->getid() << endl;
+	cout << "document id : " << document->getId() << endl;
 	int tables = document->getTables();
 	for (int i = 0; i < tables; i++) {
 		Table* table = document->getMutableTable(i);

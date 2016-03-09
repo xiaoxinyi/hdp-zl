@@ -41,10 +41,12 @@ CompactTables	document.cc	/^void DocumentUtils::CompactTables(Document* document
 Document	document.cc	/^Document::Document(int id) $/;"	f	class:hdp::Document
 GetWordsAndCounts	document.cc	/^void TableUtils::GetWordsAndCounts(Table* table,$/;"	f	class:hdp::TableUtils
 PermuteWords	document.cc	/^void DocumentUtils::PermuteWords(Document* document) {$/;"	f	class:hdp::DocumentUtils
+PrintDocumentInfo	document.cc	/^void DocumentUtils::PrintDocumentInfo(Document* document) {$/;"	f	class:hdp::DocumentUtils
+PrintTableInfo	document.cc	/^void TableUtils::PrintTableInfo(Table* table) {$/;"	f	class:hdp::TableUtils
 SampleTableForWord	document.cc	/^void DocumentUtils::SampleTableForWord(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTables	document.cc	/^void DocumentUtils::SampleTables(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTopicForTable	document.cc	/^void TableUtils::SampleTopicForTable(Table* table, $/;"	f	class:hdp::TableUtils
-SampleTopics	document.cc	/^void DocumentUtils::SampleTopics(Document* document, double gamma) {$/;"	f	class:hdp::DocumentUtils
+SampleTopics	document.cc	/^void DocumentUtils::SampleTopics(Document* document, double gamma, bool remove) {$/;"	f	class:hdp::DocumentUtils
 Table	document.cc	/^Table::Table()$/;"	f	class:hdp::Table
 Table	document.cc	/^Table::Table(int word_count)$/;"	f	class:hdp::Table
 UpdateTableFromWord	document.cc	/^void WordUtils::UpdateTableFromWord(Word* word,$/;"	f	class:hdp::WordUtils
@@ -154,6 +156,8 @@ EtaScore	topic.cc	/^double TopicUtils::EtaScore(Topic* topic, double eta) {$/;"	
 GammaScore	topic.cc	/^double AllTopicsUtils::GammaScore(double gamma) {$/;"	f	class:hdp::AllTopicsUtils
 GetInstance	topic.cc	/^AllTopics& AllTopics::GetInstance() {$/;"	f	class:hdp::AllTopics
 LogGammaRatio	topic.cc	/^double TopicTableUtils::LogGammaRatio(Table* table,$/;"	f	class:hdp::TopicTableUtils
+PrintTopicInfo	topic.cc	/^void TopicUtils::PrintTopicInfo(Topic* topic) {$/;"	f	class:hdp::TopicUtils
+PrintTopicsInfo	topic.cc	/^void AllTopicsUtils::PrintTopicsInfo() {$/;"	f	class:hdp::AllTopicsUtils
 Topic	topic.cc	/^Topic::Topic(int corpus_word_no)$/;"	f	class:hdp::Topic
 addNewTopic	topic.cc	/^void AllTopics::addNewTopic(int corpus_word_no) {$/;"	f	class:hdp::AllTopics
 compactTopics	topic.cc	/^void AllTopics::compactTopics() {$/;"	f	class:hdp::AllTopics

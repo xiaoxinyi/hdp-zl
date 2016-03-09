@@ -8,7 +8,7 @@
 #include "gibbs.h"
 #include "document.h"
 
-#define REP_NO 100
+#define REP_NO 1
 #define DEFAULT_HYPER_LAG 0
 #define DEFAULT_SHUFFLE_LAG 100
 #define DEFAULT_SAMPLE_GAMMA 0
@@ -133,9 +133,17 @@ void GibbsSampler::InitGibbsState(
     														alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
+    // Debug
+    DocumentUtils::PrintDocumentInfo(document);
+    AllTopicsUtils::PrintTopicsInfo();
+
     DocumentUtils::SampleTopics(document, gamma, false);
 
     AllTopics::GetInstance().compactTopics();
+
+    // Debug
+    DocumentUtils::PrintDocumentInfo(document);
+    AllTopicsUtils::PrintTopicsInfo();
 
 	}
 
@@ -213,9 +221,19 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
 																alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
+    // Debug
+    cout << "sampling tables ..." << endl;
+    DocumentUtils::PrintDocumentInfo(document);
+    AllTopicsUtils::PrintTopicsInfo();
+
     DocumentUtils::SampleTopics(document, gamma, true);
 
     AllTopics::GetInstance().compactTopics();
+
+    // Debug
+    cout << "sampling topics ..." << endl;
+    DocumentUtils::PrintDocumentInfo(document);
+    AllTopicsUtils::PrintTopicsInfo();
   }
 
   // Sample hyper-parameters.

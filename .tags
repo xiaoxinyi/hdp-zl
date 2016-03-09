@@ -48,6 +48,10 @@ MAX_ITERATIONS	hdp_main.cc	/^#define MAX_ITERATIONS /;"	d	file:
 OBJS	Makefile	/^OBJS = utils.o topic.o document.o corpus.o gibbs.o hdp_main.o$/;"	m
 PermuteDocuments	corpus.cc	/^void CorpusUtils::PermuteDocuments(Corpus* corpus) {$/;"	f	class:hdp::CorpusUtils
 PermuteWords	document.cc	/^void DocumentUtils::PermuteWords(Document* document) {$/;"	f	class:hdp::DocumentUtils
+PrintDocumentInfo	document.cc	/^void DocumentUtils::PrintDocumentInfo(Document* document) {$/;"	f	class:hdp::DocumentUtils
+PrintTableInfo	document.cc	/^void TableUtils::PrintTableInfo(Table* table) {$/;"	f	class:hdp::TableUtils
+PrintTopicInfo	topic.cc	/^void TopicUtils::PrintTopicInfo(Topic* topic) {$/;"	f	class:hdp::TopicUtils
+PrintTopicsInfo	topic.cc	/^void AllTopicsUtils::PrintTopicsInfo() {$/;"	f	class:hdp::AllTopicsUtils
 RANDNUMGEN	utils.cc	/^gsl_rng* Utils::RANDNUMGEN = NULL;$/;"	m	class:hdp::Utils	file:
 RANDNUMGEN	utils.h	/^  static gsl_rng* RANDNUMGEN;$/;"	m	class:hdp::Utils
 REP_NO	gibbs.cc	/^#define REP_NO /;"	d	file:
@@ -60,7 +64,7 @@ SampleFromLogPr	utils.cc	/^int Utils::SampleFromLogPr(const vector<double>& log_
 SampleTableForWord	document.cc	/^void DocumentUtils::SampleTableForWord(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTables	document.cc	/^void DocumentUtils::SampleTables(Document* document,$/;"	f	class:hdp::DocumentUtils
 SampleTopicForTable	document.cc	/^void TableUtils::SampleTopicForTable(Table* table, $/;"	f	class:hdp::TableUtils
-SampleTopics	document.cc	/^void DocumentUtils::SampleTopics(Document* document, double gamma) {$/;"	f	class:hdp::DocumentUtils
+SampleTopics	document.cc	/^void DocumentUtils::SampleTopics(Document* document, double gamma, bool remove) {$/;"	f	class:hdp::DocumentUtils
 Shuffle	utils.cc	/^void Utils::Shuffle(gsl_permutation* permutation, int size) {$/;"	f	class:hdp::Utils
 Sum	utils.cc	/^double Utils::Sum(const vector<double>& v) {$/;"	f	class:hdp::Utils
 TOPIC_H_	topic.h	/^#define TOPIC_H_$/;"	d

@@ -1,8 +1,11 @@
 #include <math.h>
 #include <assert.h>
 
+#include <iostream>
+
 #include "utils.h"
 #include "topic.h"
+
 
 namespace hdp {
 // =======================================================================
@@ -93,8 +96,10 @@ void AllTopics::removeTopic(int pos) {
 
 void AllTopics::removeLastTopic() {
 	int size = topic_ptrs_.size();
-	delete topic_ptrs_[size];
-	topic_ptrs_[size] = NULL;
+	if (topic_ptrs_[size - 1] != NULL) {
+			delete topic_ptrs_[size - 1];		
+	}
+	topic_ptrs_[size - 1] = NULL;
 	topic_ptrs_.resize(size - 1);
 }
 
@@ -132,9 +137,9 @@ double TopicUtils::EtaScore(Topic* topic, double eta) {
 
 void TopicUtils::PrintTopicInfo(Topic* topic) {
 	cout << "topic address : " << topic << endl;
-	cout << "topic table count : " << topic->getTableCount() << emdl;
-	cout << "word NO in topic : " << topic->getWordNo() << endl;
-	int corpus_worod_no = topic->getCorpusWordNo();
+	cout << "topic table count : " << topic->getTableCount() << endl;
+	cout << "word NO in topic : " << topic->getTopicWordNo() << endl;
+	int corpus_word_no = topic->getCorpusWordNo();
 	cout << "word id : count" << endl;
 	for (int i = 0; i < corpus_word_no; i++) {
 		cout << i << " : " << topic->getWordCount(i) << endl;
@@ -227,7 +232,7 @@ void AllTopicsUtils::PrintTopicsInfo() {
 	AllTopics& all_topics = AllTopics::GetInstance();
 	int topics = all_topics.getTopics();
 	for (int i = 0; i < topics; i++) {
-		Topic topic = all_topics.getMutableTopic(i);
+		Topic* topic = all_topics.getMutableTopic(i);
 		TopicUtils::PrintTopicInfo(topic);
 	}
 }
