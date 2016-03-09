@@ -194,6 +194,9 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
   gibbs_state->incIteration(1);
   int current_iteration = gibbs_state->getIteration();
 
+  if (gibbs_state->getIteration() == 100) {
+  	cout << endl;
+  }
   cout << "Start iteration..." << gibbs_state->getIteration() << endl;
 
   // Determine value for permute.

@@ -208,12 +208,39 @@ Document::Document(int id)
 }
 
 Document::~Document() {
-	int size = getTables();
+	int size = tables_.size();
 	for (int i = 0; i < size; i++) {
 		if (tables_[i] != NULL) {
-			delete tables_[i];			
+			delete tables_[i];	
+			tables_[i] = NULL;		
 		}
 	}
+}
+
+Document::Document(const Document& from)
+		: id_(from.id_),
+		  words_(from.words_) {
+	int size = from.tables_.size();
+	for (int i = 0; i < size; i++) {
+		Table* table = new Table(0);
+		*table = *(from.tables_[i]);
+		tables_.push_back(table);
+	}
+}
+
+Document& Document::operator=(const Document& from) {
+	if (this == &from) return *this;
+	id_ = from.id_;
+	words_ = from.words_;
+
+	int size = from.tables_.size();
+	for (int i = 0; i < size; i++) {
+		Table* table = new Table(0);
+		*table = *(from.tables_[i]);
+		tables_.push_back(table);
+	}
+
+	return *this;
 }
 
 void Document::removeTable(int pos) {

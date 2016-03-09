@@ -114,6 +114,9 @@ public:
 	Document(int id);
 	~Document();
 
+	Document(const Document& from);
+	Document& operator=(const Document& from);
+
 	int getWords() { return words_.size(); }
 	int getTables() { return tables_.size(); }
 
