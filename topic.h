@@ -66,6 +66,8 @@ class TopicUtils {
 public:
 	// Computing eta score for given topic.
 	static double EtaScore(Topic* topic, double eta);
+
+	static void PrintTopicInfo(Topic* topic);
 };
 
 // AllTopics store all the topics globally.
@@ -134,6 +136,8 @@ public:
 	// Compute eta score.
 	// eta - dirichlet distribution parameter of each topic.
 	static double EtaScore();
+
+	static void PrintTopicsInfo();
 };
 
 }  // namespace hdp

@@ -103,6 +103,8 @@ static void UpdateTopicFromTable(Table* table,
 static void SampleTopicForTable(Table* table, 
 																double gamma,
 																bool remove);
+// For debug.
+static void PrintTableInfo(Table* table);
 };
 
 // The Document contains an id, a number of words.
@@ -186,6 +188,8 @@ public:
 
 	// Sample Topics for all tables given a document.
 	static void SampleTopics(Document* document, double gamma, bool remove); 
+
+	static void PrintDocumentInfo(Document* document);
 };
 
 

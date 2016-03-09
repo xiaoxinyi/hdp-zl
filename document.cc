@@ -177,6 +177,26 @@ void TableUtils::SampleTopicForTable(Table* table,
 	}
 }
 
+void TableUtils::PrintTableInfo(Table* table) {
+	cout << "table address : " << table << endl;
+	Topic* topic = table->getMutableTopic();
+	cout << "correspond topic address : " << topic << endl;
+
+	word_count = table->getWordCount();
+	vector<int> word_ids;
+	vector<int> counts;
+
+	TableUtils::GetWordsAndCounts(table, word_ids, counts);
+	cout << "word count in table : " << word_count << endl;
+	cout << "word id : count" << endl;
+
+	int size = word_ids.size();
+	for (int i = 0; i < size; i++) {
+		cout << word_ids[i] << " : " << counts[i] << endl;
+	}
+	cout << "================================" << endl;
+	cout << endl;
+}
 // =======================================================================
 // Document
 // =======================================================================
@@ -368,4 +388,12 @@ void DocumentUtils::PermuteWords(Document* document) {
   gsl_permutation_free(perm);
 }
 
+void DocumentUtils::PrintDocumentInfo(Document* document) {
+	cout << "document id : " << document->getid() << endl;
+	int tables = document->getTables();
+	for (int i = 0; i < tables; i++) {
+		Table* table = document->getMutableTable(i);
+		TableUtils::PrintTableInfo(table);
+	}
+}
 }  // namespace hdp

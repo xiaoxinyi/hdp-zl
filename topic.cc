@@ -130,6 +130,19 @@ double TopicUtils::EtaScore(Topic* topic, double eta) {
 	return score;
 }
 
+void TopicUtils::PrintTopicInfo(Topic* topic) {
+	cout << "topic address : " << topic << endl;
+	cout << "topic table count : " << topic->getTableCount() << emdl;
+	cout << "word NO in topic : " << topic->getWordNo() << endl;
+	int corpus_worod_no = topic->getCorpusWordNo();
+	cout << "word id : count" << endl;
+	for (int i = 0; i < corpus_word_no; i++) {
+		cout << i << " : " << topic->getWordCount(i) << endl;
+	}
+	cout << "=======================" << endl;
+	cout << endl;
+}
+
 // =======================================================================
 // TopicTableUtils
 // =======================================================================
@@ -146,8 +159,6 @@ double TopicTableUtils::LogGammaRatio(Table* table,
 	int table_words = table->getWordCount();
 	int corpus_word_no = topic->getCorpusWordNo();
 
-
-	
 	if (old_topic == topic) {
 		log_gamma_ratio += gsl_sf_lngamma(corpus_word_no * eta + topic_words - table_words) -
 										 gsl_sf_lngamma(corpus_word_no * eta + topic_words);
@@ -212,4 +223,12 @@ double AllTopicsUtils::EtaScore() {
 	return score;
 }
 
+void AllTopicsUtils::PrintTopicsInfo() {
+	AllTopics& all_topics = AllTopics::GetInstance();
+	int topics = all_topics.getTopics();
+	for (int i = 0; i < topics; i++) {
+		Topic topic = all_topics.getMutableTopic(i);
+		TopicUtils::PrintTopicInfo(topic);
+	}
+}
 }  // namespace hdp
