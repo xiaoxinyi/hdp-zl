@@ -55,6 +55,9 @@ private:
 	// Log word posterior probability in the topic.
 	vector<double> log_word_pr_;
 
+	// Map table to word count from this table.
+	// unordered_map<Table*, int> map_table_word_cout_;
+
 };
 
 // The class provides functionality for computing

@@ -95,6 +95,12 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 														int word_id,
 														int update) {
 	Topic* topic = table->getMutableTopic();
+	if (table->getWordCount() == 1 && update == 1) {
+		topic->incTableCount(update);
+	} 
+	if (table->getWordCount() == 0 && update == -1) {
+		topic->incTableCount(update);
+	}
 	topic->incTopicWordNo(update);
 	topic->updateWordCounts(word_id, update);
 }
@@ -111,7 +117,6 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 		UpdateTopicFromTable(table, word_id, update * counts[word_id]);
 	}
 
-	table->getMutableTopic()->incTableCount(update);
 }
 
 void TableUtils::SampleTopicForTable(Table* table, 
@@ -142,10 +147,10 @@ void TableUtils::SampleTopicForTable(Table* table,
 		}					
 	}
 
-	Topic* new_topic = all_topics.getMutableTopic(topics);
+	Topic* new_ = all_topics.getMutableTopic(topics);
 	log_pr[topics] = log(gamma) + 
 										TopicTableUtils::LogGammaRatio(
-											table, new_topic, word_ids, counts);
+											table, new_, word_ids, counts);
 			
 
 	int sample_topic = Utils::SampleFromLogPr(log_pr);
@@ -153,10 +158,8 @@ void TableUtils::SampleTopicForTable(Table* table,
 	Topic* new_topic = all_topics.getMutableTopic(sample_topic);
 
 	if (old_topic != new_topic) {
-		if (remove) {
-			TableUtils::UpdateTopicFromTable(table, word_ids, counts, -1);	
-		}
-		
+		TableUtils::UpdateTopicFromTable(table, word_ids, counts, -1);	
+
 		table->setTopic(new_topic);
 		TableUtils::UpdateTopicFromTable(table, word_ids, counts, 1);
 	}
