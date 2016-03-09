@@ -33,7 +33,15 @@ void Topic::updateWordCounts(int word_id, int update) {
 	int word_count = word_counts_[word_id]; 
 		
 	lgam_word_eta_[word_id] = gsl_sf_lngamma(word_count + eta);
-	log_word_pr_[word_id] = log(word_count + eta) -log(topic_word_no_ + eta * corpus_word_no_ );
+	double log_w_pr = log(eta) - log(topic_word_no_ + corpus_word_no_ * eta);
+	for (int i = 0; i < corpus_word_no_; i++) {
+		if (word_counts_[i] == 0) {
+			log_word_pr_[i] = log_w_pr;
+		} else {
+			log_word_pr_[i] = log(word_counts_[i] + eta) -
+												log(topic_word_no_ + eta * corpus_word_no_);
+		}
+	}
 }
 
 int Topic::getTopicWords() const {

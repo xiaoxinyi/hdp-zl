@@ -91,12 +91,13 @@ void TableUtils::GetWordsAndCounts(Table* table,
 	}
 }
 
+// This method used in sample table for word.
 void TableUtils::UpdateTopicFromTable(Table* table,
 														int word_id,
 														int update) {
 	Topic* topic = table->getMutableTopic();
 	if (table->getWordCount() == 1 && update == 1) {
-		topic->incTableCount(update);
+		topic->incTableCount(1);
 	} 
 	if (table->getWordCount() == 0 && update == -1) {
 		topic->incTableCount(update);
@@ -105,17 +106,24 @@ void TableUtils::UpdateTopicFromTable(Table* table,
 	topic->updateWordCounts(word_id, update);
 }
 
+// This method used in sample topic for table.
 void TableUtils::UpdateTopicFromTable(Table* table,
 																			vector<int>& word_ids,
 																			vector<int>& counts,
 																			int update) {
 	
 	int size = word_ids.size();
+	Topic* topic = table->getMutableTopic();
+	topic->incTableCount(-1);
 
 	for (int i = 0; i < size; i++) {
 		int word_id = word_ids[i];
-		UpdateTopicFromTable(table, word_id, update * counts[word_id]);
+		
+		topic->incTopicWordNo(update * counts[i]);
+		topic->updateWordCounts(word_id, update * counts[i]);
+		// UpdateTopicFromTable(table, word_id, update * counts[i]);
 	}
+
 
 }
 
