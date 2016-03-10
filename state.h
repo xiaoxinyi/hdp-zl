@@ -43,22 +43,36 @@ private:
 
 };
 
+// Class provides functionality for checking sampling state.
 class StateUtils {
 public:
+	// Verify topic's self status - word count sum.
+	// Add statistics to topic state.
 	static void CheckTopicState(
 							Topic* topic, 
-							unordered_map<Topic*, State>& topic_state);
+							unordered_map<Topic*, State>& topic_state,
+							int& status_ok);
 
+	// Verify table's self status - word count sum.
+	// Add statistics to table state - each word count 
+	// in the table.
+	// Minus each word count from its topic state until
+	// 0 to check topic's statistics from tables.
 	static void CheckTableState(
 							Table* table, 
 							unordered_map<Table*, State>& table_state,
-							unordered_map<Topic*, State>& topic_state);
+							unordered_map<Topic*, State>& topic_state,
+							int& status_ok);
 	
+	// Verify document's self status - word count sum,
+	// with tables' word count.
 	static void CheckDocumentState(
 							Document* document,
 							unordered_map<Table*, State>& table_state,
-							unordered_map<Topic*, State>& topic_state);
+							unordered_map<Topic*, State>& topic_state,
+							int& status_ok);
 
+	// Check the total status.
 	static void CheckCorpusState(Corpus* corpus);
 	
 };
