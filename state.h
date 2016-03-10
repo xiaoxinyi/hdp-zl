@@ -18,6 +18,7 @@ class State {
 public:
 	State(int corpus_word_no, int count);
 	State(int corpus_word_no);
+	State() {}
 
 	int getCount() const { return count_; }
 	void setCount(int count) { count_ = count; }

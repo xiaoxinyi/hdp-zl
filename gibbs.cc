@@ -7,6 +7,7 @@
 
 #include "gibbs.h"
 #include "document.h"
+#include "state.h"
 
 #define REP_NO 1
 #define DEFAULT_HYPER_LAG 0
@@ -15,6 +16,8 @@
 #define DEFAULT_SAMPLE_ETA 0
 #define DEFUALT_SAMPLE_ALPHA 0
 #define BUF_SIZE 100
+#define CHECK 1
+#define DEBUG 0
 
 namespace hdp {
 
@@ -206,6 +209,10 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
     permute = 1 - (current_iteration % shuffle_lag);
   }
 
+  if (CHECK == 1) {
+  	StateUtils::CheckCorpusState(corpus);
+  }
+
   // Permute documents in corpus.
   if (permute == 1) {
     CorpusUtils::PermuteDocuments(corpus);
@@ -224,19 +231,23 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
 																alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
-    // Debug
-    cout << "sampling tables ..." << endl;
-    DocumentUtils::PrintDocumentInfo(document);
-    AllTopicsUtils::PrintTopicsInfo();
+    if (DEBUG == 1) {
+    	cout << "sampling tables ..." << endl;
+    	DocumentUtils::PrintDocumentInfo(document);
+    	AllTopicsUtils::PrintTopicsInfo();
+    }
+    
 
     DocumentUtils::SampleTopics(document, gamma, true);
 
     AllTopics::GetInstance().compactTopics();
 
-    // Debug
-    cout << "sampling topics ..." << endl;
-    DocumentUtils::PrintDocumentInfo(document);
-    AllTopicsUtils::PrintTopicsInfo();
+    if (DEBUG == 1) {
+    	cout << "sampling topics ..." << endl;
+    	DocumentUtils::PrintDocumentInfo(document);
+    	AllTopicsUtils::PrintTopicsInfo();
+    }
+    
   }
 
   // Sample hyper-parameters.

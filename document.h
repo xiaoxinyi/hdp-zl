@@ -62,7 +62,7 @@ public:
 	void updateMapWordCount(int word_id, int update);
 
 	unordered_map<int, int>& getMapWordCount() { return map_word_count_; }
-	int getMapSize() { return map_word_count_.size(); }
+
 
 private:
 	// Number of words.
