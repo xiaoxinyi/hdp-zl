@@ -66,7 +66,7 @@ void StateUtils::CheckTableState(
 
 	int corpus_word_no = topic->getCorpusWordNo();
 	int count = table->getWordCount();
-	State state(count, corpus_word_no);
+	State state(corpus_word_no, count);
 	
 	// Check word_count_ with map_word_count_
 	auto& map_word_count = table->getMapWordCount();
