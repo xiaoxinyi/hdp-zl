@@ -2,6 +2,8 @@
 
 #include <iostream>
 
+#include "state.h"
+
 namespace hdp {
 
 // =======================================================================
@@ -16,7 +18,7 @@ State::State(int corpus_word_no, int count)
 
 State::State(int corpus_word_no) 
 		: count_(0),
-		: word_counts_(corpus_word_no, 0) {
+		  word_counts_(corpus_word_no, 0) {
 
 }
 
@@ -31,7 +33,7 @@ void StateUtils::CheckTopicState(
 
 	int corpus_word_no = topic->getCorpusWordNo();
 	int count = topic->getTableCount();
-	int word_no = topic->getWordNo();
+	int word_no = topic->getTopicWords();
 
 	State state(corpus_word_no, count);
 	int check_count = 0;
@@ -63,7 +65,7 @@ void StateUtils::CheckTableState(
 	State& state_to_minus = topic_state[topic];
 
 	int corpus_word_no = topic->getCorpusWordNo();
-	inrt count = table->getWordCount();
+	int count = table->getWordCount();
 	State state(count, corpus_word_no);
 
 	if (table->getMapSize() == count) {
@@ -86,12 +88,28 @@ void StateUtils::CheckDocumentState(
 										Document* document,
 										unordered_map<Table*, State>& table_state,
 										unordered_map<Topic*, State>& topic_state) {
-	int words = document->getwords();
+	
 	int check_words = 0;
+	int tables = document->getTables();
+	for (int i = 0; i < tables; i++) {
+		Table* table = document->getMutableTable(i);
+		check_words += table->getWordCount();
+		CheckTableState(table, table_state, topic_state);
+	}
+
+	int words = document->getWords();
+	if (words == check_words) {
+		cout << "document self status ok!" << endl;
+	} else if (words > check_words) {
+		cout << "table words in less than document, bad status!!" << endl; 
+	} else {
+		cout << "table words in more than document, bad status!!" << endl; 
+	}
+
 	for (int i = 0; i < words; i++) {
 		Word* word = document->getMutableWord(i);
 		int word_id = word->getId();
-		Table* table = word->getMutableTable()
+		Table* table = word->getMutableTable();
 		auto found = table_state.find(table);
 		if (found == table_state.end()) {
 			cout << "word " << word->getId() << 
@@ -100,13 +118,59 @@ void StateUtils::CheckDocumentState(
 		State& table_minus_state = table_state[table];
 		table_minus_state.updateWordCount(word_id, -1);
 	}
+	int corpus_word_no = AllTopics::GetInstance().getMutableTopic(0)->getCorpusWordNo();
 
-	for (auto& p : talbe_state) {
-		Table* table = p.first;
-		State& ts = p.second;
-		
+	for (auto&p : table_state) {
+		State& st = p.second;
+		for (int i = 0; i < corpus_word_no; i++) {
+			if (st.getWordCount(i) != 0) {
+				cout << "document words not match tables" << endl;
+			}
+
+			if (i == corpus_word_no - 1) {
+				cout << "document words match tables" << endl;
+			}
+		}
 	}
+
+	return;
 }
+
+void StateUtils::CheckCorpusState(Corpus* corpus) {
+	unordered_map<Table*, State> table_state;
+	unordered_map<Topic*, State> topic_state;
+
+	AllTopics& all_topics = AllTopics::GetInstance();
+	int topics = all_topics.getTopics();
+
+	for (int i = 0; i < topics; i++) {
+		cout << "CHECK TOPIC " << i << " : " << endl;
+		Topic* topic = all_topics.getMutableTopic(i);
+		CheckTopicState(topic, topic_state);
+	}
+
+	int docs = corpus->getDocuments();
+	for (int i = 0; i < docs; i++) {
+		Document* document = corpus->getMutableDocument(i);
+		CheckDocumentState(document, table_state, topic_state);
+	}
+
+	int corpus_word_no = all_topics.getMutableTopic(0)->getCorpusWordNo();
+	for (auto& p : topic_state) {
+		State& s = p.second;
+		for (int i = 0; i < corpus_word_no; i++) {
+			if (s.getWordCount(i) != 0) {
+				cout << "tables words not match topic." << endl;
+			}
+
+			if (i == corpus_word_no - 1) {
+				cout << "tables words match topic." << endl;
+			}
+		}
+	}
+	
+}
+
 
 
 

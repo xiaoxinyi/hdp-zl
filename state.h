@@ -6,6 +6,7 @@
 
 #include "topic.h"
 #include "document.h"
+#include "corpus.h"
 
 
 using namespace std;
@@ -52,7 +53,12 @@ public:
 							unordered_map<Table*, State>& table_state,
 							unordered_map<Topic*, State>& topic_state);
 	
+	static void CheckDocumentState(
+							Document* document,
+							unordered_map<Table*, State>& table_state,
+							unordered_map<Topic*, State>& topic_state);
 
+	static void CheckCorpusState(Corpus* corpus);
 	
 };
 }  // namespace hdp
