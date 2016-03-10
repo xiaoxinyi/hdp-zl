@@ -155,7 +155,7 @@ void TopicUtils::PrintTopicInfo(Topic* topic) {
 double TopicTableUtils::LogGammaRatio(Table* table,
 											 								Topic* topic,
 											 								vector<int>& word_ids,
-											 								vector<int>& counts) {
+                                      vector<int>& counts) {
 	double log_gamma_ratio = 0.0;
 	Topic* old_topic = table->getMutableTopic();
 
