@@ -86,7 +86,6 @@ void StateUtils::CheckTableState(
 	// Verify word_count in the table.
 	if (check_count == count) {
 		cout << "table self status ok!" << endl;
-		status_ok = 0;
 	} else {
 		cout << "table self status bad!!!" << endl;
 		status_ok = 0;
