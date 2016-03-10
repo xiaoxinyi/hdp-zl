@@ -50,7 +50,7 @@ Table::Table(int word_count)
 
 
 
-int Table::getCountById(int word_id) {
+int Table::getWordCount(int word_id) {
 	auto it = map_word_count_.find(word_id);
 	if (it == map_word_count_.end()) {
 		return 0;
@@ -209,6 +209,7 @@ Document::Document(int id)
 
 Document::~Document() {
 	int size = tables_.size();
+
 	for (int i = 0; i < size; i++) {
 		if (tables_[i] != NULL) {
 			delete tables_[i];	
@@ -221,10 +222,20 @@ Document::Document(const Document& from)
 		: id_(from.id_),
 		  words_(from.words_) {
 	int size = from.tables_.size();
-	for (int i = 0; i < size; i++) {
-		Table* table = new Table(0);
-		*table = *(from.tables_[i]);
-		tables_.push_back(table);
+	if (size > 0) {
+		// vector<Talbe*> tables(size, NULL);
+		unordered_map<Table*, int>  map_table_index;
+		for (int i = 0; i < size; i++) {
+			Table* table = new Table(0);
+			*table = *(from.tables_[i]);
+			tables_.push_back(table);
+			map_table_index[table] = i; 
+		}
+		for (auto& word : words_) {
+			Table* table = word.getMutableTable();
+			int index = map_table_index[table];
+			word.setTable(tables_[index]);
+		}
 	}
 }
 
@@ -234,10 +245,20 @@ Document& Document::operator=(const Document& from) {
 	words_ = from.words_;
 
 	int size = from.tables_.size();
+	if (size == 0) {
+		return *this;
+	}
+	unordered_map<Table*, int>  map_table_index;
 	for (int i = 0; i < size; i++) {
 		Table* table = new Table(0);
 		*table = *(from.tables_[i]);
 		tables_.push_back(table);
+		map_table_index[table] = i; 
+	}
+	for (auto& word : words_) {
+		Table* table = word.getMutableTable();
+		int index = map_table_index[table];
+		word.setTable(tables_[index]);
 	}
 
 	return *this;

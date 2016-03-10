@@ -58,10 +58,11 @@ public:
 	Topic* getMutableTopic() { return topic_; }
 	void setTopic(Topic* topic) { topic_ = topic; }
 
-	int getCountById(int word_id);
+	int getWordCount(int word_id);
 	void updateMapWordCount(int word_id, int update);
 
 	unordered_map<int, int>& getMapWordCount() { return map_word_count_; }
+	int getMapSize() { return map_word_count_.size(); }
 
 private:
 	// Number of words.

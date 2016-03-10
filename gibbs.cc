@@ -208,7 +208,7 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
 
   // Permute documents in corpus.
   if (permute == 1) {
-    // CorpusUtils::PermuteDocuments(corpus);
+    CorpusUtils::PermuteDocuments(corpus);
   }
 
   double alpha = corpus->getAlpha();
@@ -251,7 +251,6 @@ void GibbsSampler::IterateGibbsState(GibbsState* gibbs_state) {
     if (gibbs_state->getSampleGamma() == 1) {
     	// TODO
     }
-    // No gamma sampling.
   }
 
   // Compute the Gibbs score with the new parameter values.
