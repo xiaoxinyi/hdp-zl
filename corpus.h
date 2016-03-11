@@ -15,16 +15,19 @@ class Corpus {
   Corpus();
   Corpus(double gamma, double alpha);
 
+  Corpus(Corpus&& from) = default;
+  Corpus& operator=(Corpus&& from) = default;
+
   void setWordNo(int word_no) { word_no_ = word_no; }
   int getWordNo() const { return word_no_; }
 
-  void addDocument(const Document& document) {
-    documents_.push_back(document);
+  void addDocument(Document&& document) {
+    documents_.emplace_back(move(document));
   }
   int getDocuments() const { return documents_.size(); }
   Document* getMutableDocument(int i) { return &documents_.at(i); }
-  void setDocuments(const vector<Document>& documents) {
-    documents_ = documents;
+  void setDocuments(vector<Document>&& documents) {
+    documents_ = move(documents);
   }
 
   int getWordTotal() const { return word_total_; }

@@ -44,7 +44,7 @@ class GibbsState {
   void setSampleAlpha(int sample_alpha) { sample_alpha_ = sample_alpha; }
   void setSampleGamma(int sample_gamma) { sample_gamma_ = sample_gamma; }
 
-  void setCorpus(const Corpus& corpus) { corpus_ = corpus; }
+  void setCorpus(Corpus&& corpus) { corpus_ = move(corpus); }
   Corpus* getMutableCorpus() { return &corpus_; }
 
   int getIteration() const { return iteration_; }

@@ -109,7 +109,7 @@ void GibbsSampler::ReadGibbsInput(
   gibbs_state->setSampleEta(sample_eta);
   gibbs_state->setSampleAlpha(sample_alpha);
   gibbs_state->setSampleGamma(sample_gamma);
-  gibbs_state->setCorpus(corpus);
+  gibbs_state->setCorpus(move(corpus));
 
   AllTopics::GetInstance().setEta(eta);
 

@@ -115,11 +115,14 @@ public:
 	Document(int id);
 	~Document();
 
-	Document(const Document& from);
-	Document& operator=(const Document& from);
+	Document(const Document& from) = delete;
+	Document& operator=(const Document& from) = delete;
 
-	int getWords() { return words_.size(); }
-	int getTables() { return tables_.size(); }
+	Document(Document&& from);
+	Document& operator=(Document&& from);
+
+	int getWords() { return static_cast<int>(words_.size()); }
+	int getTables() { return static_cast<int>(tables_.size()); }
 
 	void addWord(int id) { words_.push_back(Word(id)); }
 	void addWord(const Word& word) { words_.push_back(word); }

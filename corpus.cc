@@ -89,7 +89,7 @@ void CorpusUtils::ReadCorpus(
       }
       word_count_pos++;
     }
-    corpus->addDocument(document);
+    corpus->addDocument(move(document));
     doc_no += 1;
   }
 
@@ -117,10 +117,11 @@ void CorpusUtils::PermuteDocuments(Corpus* corpus) {
   assert(size == perm_size);
 
   for (int i = 0; i < perm_size; i++) {
-    permuted_documents.push_back(*corpus->getMutableDocument(perm->data[i]));
+		Document document = move(*corpus->getMutableDocument((int)perm->data[i]));
+    permuted_documents.emplace_back(move(document));
   }
 
-  corpus->setDocuments(permuted_documents);
+  corpus->setDocuments(move(permuted_documents));
 
   gsl_permutation_free(perm);
 }

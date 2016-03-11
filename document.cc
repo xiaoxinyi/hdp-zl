@@ -217,51 +217,78 @@ Document::~Document() {
 		}
 	}
 }
+//
+//Document::Document(const Document& from)
+//		: id_(from.id_),
+//		  words_(from.words_) {
+//	cout << "MOVE CONSTRUCTOR FAILED!!!" << endl;
+//	int size = from.tables_.size();
+//	if (size > 0) {
+//		// vector<Talbe*> tables(size, NULL);
+//		unordered_map<Table*, int>  map_table_index;
+//		for (int i = 0; i < size; i++) {
+//			Table* table = new Table(0);
+//			*table = *(from.tables_[i]);
+//			tables_.push_back(table);
+//			map_table_index[table] = i; 
+//		}
+//		for (auto& word : words_) {
+//			Table* table = word.getMutableTable();
+//			int index = map_table_index[table];
+//			word.setTable(tables_[index]);
+//		}
+//	}
+//}
+//
+//Document& Document::operator=(const Document& from) {
+//	cout << "MOVE ASSIGNMENT FAILED!!!" << endl;
+//	if (this == &from) return *this;
+//	id_ = from.id_;
+//	words_ = from.words_;
+//
+//	int size = from.tables_.size();
+//	if (size == 0) {
+//		return *this;
+//	}
+//	unordered_map<Table*, int>  map_table_index;
+//	for (int i = 0; i < size; i++) {
+//		Table* table = new Table(0);
+//		*table = *(from.tables_[i]);
+//		tables_.push_back(table);
+//		map_table_index[table] = i; 
+//	}
+//	for (auto& word : words_) {
+//		Table* table = word.getMutableTable();
+//		int index = map_table_index[table];
+//		word.setTable(tables_[index]);
+//	}
+//
+//	return *this;
+//}
 
-Document::Document(const Document& from)
-		: id_(from.id_),
-		  words_(from.words_) {
-	int size = from.tables_.size();
-	if (size > 0) {
-		// vector<Talbe*> tables(size, NULL);
-		unordered_map<Table*, int>  map_table_index;
-		for (int i = 0; i < size; i++) {
-			Table* table = new Table(0);
-			*table = *(from.tables_[i]);
-			tables_.push_back(table);
-			map_table_index[table] = i; 
-		}
-		for (auto& word : words_) {
-			Table* table = word.getMutableTable();
-			int index = map_table_index[table];
-			word.setTable(tables_[index]);
-		}
-	}
+Document::Document(Document&& from) 
+		: id_(move(from.id_)),
+		  words_(move(from.words_)),
+		  tables_(move(from.tables_)) {
+	
 }
 
-Document& Document::operator=(const Document& from) {
-	if (this == &from) return *this;
-	id_ = from.id_;
-	words_ = from.words_;
-
-	int size = from.tables_.size();
-	if (size == 0) {
+Document& Document::operator=(Document&& from) {
+	if (this == &from) {
 		return *this;
 	}
-	unordered_map<Table*, int>  map_table_index;
-	for (int i = 0; i < size; i++) {
-		Table* table = new Table(0);
-		*table = *(from.tables_[i]);
-		tables_.push_back(table);
-		map_table_index[table] = i; 
-	}
-	for (auto& word : words_) {
-		Table* table = word.getMutableTable();
-		int index = map_table_index[table];
-		word.setTable(tables_[index]);
+	for (auto& table : tables_) {
+		if (table == NULL) {
+			delete table;
+			table = NULL;
+		}
 	}
 
+	words_ = move(from.words_);
+	tables_ = move(from.tables_);
+
 	return *this;
+
 }
 
 void Document::removeTable(int pos) {
