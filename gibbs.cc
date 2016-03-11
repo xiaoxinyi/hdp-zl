@@ -136,17 +136,9 @@ void GibbsSampler::InitGibbsState(
     														alpha, gamma, corpus_word_no);
     DocumentUtils::CompactTables(document);
 
-    // Debug
-    DocumentUtils::PrintDocumentInfo(document);
-    AllTopicsUtils::PrintTopicsInfo();
-
     DocumentUtils::SampleTopics(document, gamma, false);
 
     AllTopics::GetInstance().compactTopics();
-
-    // Debug
-    DocumentUtils::PrintDocumentInfo(document);
-    AllTopicsUtils::PrintTopicsInfo();
 
 	}
 
